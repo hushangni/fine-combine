@@ -4,20 +4,22 @@ const fineApp = {};
 fineApp.gridSize = 4;
 fineApp.score = 0;
 
-fineApp.tile = {
-    x: null,
-    y: null,
-    content: 2,
+class Tile {
+    constructor(position, value) {
+        this.x = position.x;
+        this.y = position.y;
+        this.value = value;
+        this.prevPosition = null;
+        this.mergedFrom = null;
+    }
 
-    prevPosition: null,
-    mergedFrom: null,
     // saves previous position
     savePosition() {
         this.prevPosition = {
             x: this.x,
             y: this.y
         }
-    },
+    }
 
     // updates position
     updatePosition(position) {
@@ -80,30 +82,35 @@ fineApp.grid = {
         }
     },
 
+    thereAreEmptyCells() {
+        return !!fineApp.grid.emptyCells().length;
+    },
+
+    // add tile to grid
     pushTile(tile) {
         this.cells[tile.x][tile.y] = tile;
+    },
+
+    // add a random tile to grid
+    addRandomTile() {
+        if (fineApp.grid.emptyCells()) {
+            // generate either a 2 or a 4 each time,
+            // generate mostly 2s though, only a 4 once in a while
+            const value = Math.random() < 0.9 ? 2 : 4;
+            // create new tile with a random empty cell coordiante for it to go in
+            const tile = new Tile(fineApp.grid.randomEmptyCell(), value);
+
+            fineApp.grid.pushTile(tile);
+        }
+    },
+
+    // add the starting 2 tiles on to the grid
+    addStartTiles() {
+        for (let i = 0; i < 2; i++) {
+            fineApp.grid.addRandomTile();
+        }
     }
 };
-
-
-// returns true if there are empty cells available
-fineApp.thereAreEmptyCells = () => {
-    return !!fineApp.emptyCells().length;
-}
-
-fineApp.addNewTile = () => {
-
-}
-
-fineApp.addStartTiles = () => {
-    for (let i = 0; i < 2; i ++) {
-
-    }
-}
-
-fineApp.addRandomTile = () => {
-    if (fineApp.emptyCells) {}
-}
 
 
 
@@ -119,7 +126,7 @@ fineApp.init = () => {
     console.log(`building grid`);
 
     // add starting tiles to board
-    fineApp.addStartTiles();
+    fineApp.grid.addStartTiles();
     console.log("start/reseting game");
 }
 
