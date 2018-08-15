@@ -1,21 +1,33 @@
 const fineApp = {};
 
-/* STEPS
-1. Have a Grid, that can check it's cells
-2. Have a Tile class that has position values
-3. Update HTML with new tiles
-4. Keep track of time as score
-*/
-
 // gridSize times gridSized board
 fineApp.gridSize = 4;
 fineApp.score = 0;
 fineApp.gameOver = false;
 fineApp.gameWon = false;
+fineApp.winTile = 256;
+
 fineApp.tileContainer = $('.tile-container')[0];
 fineApp.scoreContainer = $('#score')[0];
 fineApp.message = $('.message')[0];
 
+const fruitImages = [
+    '<img src="assets/kiwi.png" alt="">',
+    '<img src="assets/papaya.png" alt="">',
+    '<img src="assets/coconut.png" alt="">',
+    '<img src="assets/dragonfruit.png" alt="">',
+    '<img src="assets/lemon.png" alt="">',
+    '<img src="assets/pomegranate.png" alt="">',
+    '<img src="assets/watermelon.png" alt="">',
+    '<img src="assets/fruitbowl.png" alt="">'
+];
+let blop  = new Howl({
+    src: ['../assets/blop.mp3', '../assets/blop.wav']
+});
+
+let images = fruitImages;
+
+/////////////// KEYBOARD INPUT ///////////////
 class KeyboardInput {
     constructor() {
         this.events = {};
@@ -30,6 +42,7 @@ class KeyboardInput {
 
     produceEvent(event, info) {
         let callbacks = this.events[event];
+
         if (callbacks) {
             callbacks.forEach(function (callback) {
                 callback(info);
@@ -39,10 +52,10 @@ class KeyboardInput {
 
     listen() {
         const keyCodes = {
-            38: "up",
-            39: "right",
-            40: "down",
-            37: "left"
+            38: 0,// up
+            39: 1,// right
+            40: 2,// down
+            37: 3// left
         }
 
         $(document).on("keydown", function(e) {
@@ -50,12 +63,7 @@ class KeyboardInput {
 
             if (key !== undefined) {
                 e.preventDefault();
-                console.log(key);
                 fineApp.keyListen.produceEvent("move", key);
-            }
-
-            if (e.which === 32) {
-                this.restart.bind(this)(e);
             }
         });
 
@@ -178,12 +186,12 @@ fineApp.grid = {
 
     // add tile to grid
     pushTile(tile) {
-        this.cells[tile.x][tile.y] = tile;
+        fineApp.grid.cells[tile.x][tile.y] = tile;
     },
 
     // remove tile from grid
     popTile(tile) {
-        this.cells[tile.x][tile.y] = null;
+        fineApp.grid.cells[tile.x][tile.y] = null;
     },
 
     // add a random tile to grid
@@ -225,21 +233,87 @@ fineApp.grid = {
         tile.updatePosition(cell);
     },
 
-    // come back to this
+    // this is the money maker
     move(direction) {
+        // dont do anything if its over
+
+        if (fineApp.gameOver || fineApp.gameOver) return;
+
         let cell, tile;
+
+        let coordinate = fineApp.getCoordinates(direction);
+        let routes = fineApp.travelRoutes(coordinate);
+        let moved = false;
+
+        fineApp.grid.prepareTiles();
+
+        routes.x.forEach(function(x) {
+            routes.y.forEach(function(y) {
+                cell = {x: x, y: y};
+                tile = fineApp.grid.cellValue(cell);
+
+                if (tile) {
+                    const positions = fineApp.mostFar(cell, coordinate);
+                    const next = fineApp.grid.cellValue(positions.next);
+
+                    if (next && next.value === tile.value && !next.mergedFrom) {
+                        const merged = new Tile(positions.next, tile.value * 2);
+
+                        merged.mergedFrom = [tile, next];
+                        blop.play();
+                        fineApp.grid.pushTile(merged);
+                        fineApp.grid.popTile(tile);
+
+
+                        // converge the 2 tiles positions
+                        tile.updatePosition(positions.next);
+
+
+                        // the end tile
+                        if (merged.value === 256) {
+                            fineApp.gameWon = true;
+                        }
+                    } else {
+                        fineApp.grid.moveTile(tile, positions.mostFar);
+                    }
+
+                    if (!fineApp.samePositions(cell, tile)) {
+                        moved = true;
+                        // tile moved to original
+                    }
+                }
+            });
+        });
+
+        if (moved) {
+            fineApp.grid.addRandomTile();
+
+            if (fineApp.movesAvailable().length == 0) {
+                fineApp.gameOver = true; // game over!
+            }
+            fineApp.updateBoard();
+        }
     }
-
-
 };
 
-// TRAVELS
+
+
+
+
+
+
+
+/////////////// TRAVELS AND COORDIANTES///////////////
 fineApp.getCoordinates = direction => {
     const coordinates = {
-        up: {x: 0, y: -1},
-        right: { x: 1, y: 0 },
-        down: { x: 0, y: 1 },
-        left: { x: -1, y: 0 }
+        0: {x: 0, y: -1},
+        1: { x: 1, y: 0 },
+        2: { x: 0, y: 1 },
+        3: { x: -1, y: 0 }
+        //  38: 0,// up
+        // 39: 1,// right
+        // 40: 2,// down
+        // 37: 3// left
     };
     return coordinates[direction];
 }
@@ -256,6 +330,7 @@ fineApp.travelRoutes = coordinates => {
         routes.y.push(i);
     }
 
+    // forces route to travel from the furthest
     if (coordinates.x === 1) {
         routes.x = routes.x.reverse();
     }
@@ -265,10 +340,10 @@ fineApp.travelRoutes = coordinates => {
     }
 
     return routes;
-}
+};
 
 // finds farthest position
-fineApp.mostFar(cell, coordinate) {
+fineApp.mostFar = (cell, coordinate) => {
     let prev;
 
     // keep moving until you hit another cell, or you are out of bounds
@@ -278,7 +353,7 @@ fineApp.mostFar(cell, coordinate) {
             x: prev.x + coordinate.x,
             y: prev.y + coordinate.y
         };
-    } while (fineApp.withinBounds(cell) && fineApp.cellIsEmpty(cell));
+    } while (fineApp.grid.inBounds(cell) && fineApp.grid.cellIsEmpty(cell));
 
     return {
         mostFar: prev,
@@ -287,15 +362,30 @@ fineApp.mostFar(cell, coordinate) {
 };
 
 // return movesAvailable
-fineApp.movesAvailable() {
-    return fineApp.grid.emptyCells() || fineApp.tileMatchesLeft();
+fineApp.movesAvailable = () => {
+    return fineApp.grid.emptyCells();
 }
 
-fineApp.tileMatchesLeft() {
-
+// returns if positoins are equal:
+fineApp.samePositions = (firstPos, secondPos) => {
+    return firstPos.x === secondPos.x && firstPos.y === secondPos.y;
 }
 
-/////////////// HTML ///////////////
+// returns position class for the tile
+fineApp.positionClass = position => {
+    return `tile-position-${position.x + 1}-${position.y + 1}`;
+};
+
+
+
+
+
+
+
+
+
+
+/////////////// UPDATING HTML ///////////////
 
 // add tile on to the HTML STUFF
 fineApp.addTileToBoard = tile => {
@@ -305,16 +395,49 @@ fineApp.addTileToBoard = tile => {
 
     let classes = ['tile', `tile-${tile.value}`, positionClass];
     item.addClass(classes.join(" "));
-    console.log(item);
 
     // put in the proper image content we want for now its a number
     // REPALCE IWTH COOL IMAGES LATER
-    item.text(tile.value);
+
+    switch (tile.value) {
+        case 2:
+            item.html(images[0]);
+            break;
+        case 4:
+            item.html(images[1]);
+            break;
+        case 8:
+            item.html(images[2]);
+            break;
+        case 16:
+            item.html(images[3]);
+            break;
+        case 32:
+            item.html(images[4]);
+            break;
+        case 64:
+            item.html(images[5]);
+            break;
+        case 128:
+            item.html(images[6]);
+            break;
+        case 256:
+            item.html(images[7]);
+            break;
+        default:
+            item.text(tile.value);
+    }
 
     // handles previous position of tile first
     if (tile.prevPosition) {
         // if there is previous position, handle
+        // requestnimationFrame better browser optimizaiton/support
+        // animations in active tabs stop, better battery life
+        // more battery friendly > setInterval()
+        // animate all classes added
         window.requestAnimationFrame(function() {
+            item.removeClass(classes[2]);
+            // SHOUTOUT TO ZOE CODES for saving my life by realizing i need to handle this area rppropriately
             classes[2] = fineApp.positionClass({x: tile.x, y: tile.y});
             item.addClass(classes.join(" "));
         });
@@ -334,54 +457,69 @@ fineApp.addTileToBoard = tile => {
 
     // append the tile to tile container on HTML
     fineApp.tileContainer.append(item[0]);
-}
+};
 
 // update board
 fineApp.updateBoard = () => {
     window.requestAnimationFrame(function() {
-        $('.tile-container').empty();
+        // clear the fcking container so all the tiles that have been turned null dissapear
+        fineApp.clearContainer(fineApp.tileContainer);
 
         fineApp.grid.cells.forEach(function(col) {
             col.forEach(function (cell) {
+                // if cell is not null, add to board
                 if (cell) {
                     fineApp.addTileToBoard(cell);
                 }
             });
         });
 
+        if (fineApp.gameOver) {
+            console.log("game over!");
+        }
+
+        if (fineApp.gameWon) {
+            console.log("you won!");
+        }
+
         // update score/time?
         // update over
         // update win
     });
-}
+};
 
-// returns position class for the tile
-fineApp.positionClass = position => {
-    return `tile-position-${position.x+1}-${position.y+1}`;
-}
+// clear out a HTML container
+fineApp.clearContainer = container => {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+};
 
 
 
-/////////////// KEYBOARD INPUT LISTENER ///////////////
+
+
+
+
+
 
 // initialize
 fineApp.init = () => {
     // reset game
-    fineApp.score = 0;
     fineApp.gameOver = false;
     fineApp.gameWon = false;
 
     // build empty grid
     fineApp.grid.buildGrid();
     console.log(`building grid`);
+    fineApp.grid.addStartTiles();
 
     fineApp.keyListen = new KeyboardInput();
     fineApp.keyListen.listen();
-
+    fineApp.updateBoard();
+    fineApp.keyListen.on("move", fineApp.grid.move.bind(this));
 
     // add starting tiles to board
-
-    fineApp.grid.addStartTiles();
     console.log("start/reseting game");
 }
 

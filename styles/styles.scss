@@ -10,50 +10,138 @@ img {
     width: 100%;
 }
 
-.game-grid {
-    display: grid;
+body {
+  background: rgb(253,220,149);
+background: linear-gradient(90deg, rgba(253,220,149,1) 0%, rgba(251,184,166,1) 100%);
+  background-size: cover;
+  height: 100vh;
+  text-align: center;
+}
+
+img.juicy-font {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.juicy-button {
+  text-decoration: none;
+  background: white;
+  padding: 30px;
+  border-radius: 30px;
+	position:relative;
+	text-transform:uppercase;
+	text-decoration:none;
+	letter-spacing:0.3em;
+	font-weight:bold;
+	color: #5e5e5e;
+	transition:0.2s ease-in-out all;
+	margin-bottom:30px;
+
+	&:after {
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		content:"";
+		border-radius:40px;
+		transition:0.2s ease-in-out all;
+		background:#fff;
+		z-index:-1;
+		animation: bounceOut 1000ms linear both;
+	}
+
+	&:hover {
+		letter-spacing:0.4em;
+		color: rgba(251,184,166,1);
+
+		&:after {
+ 			animation: bounceIn 1000ms linear both;
+		}
+	}
+
+	&:active {
+		letter-spacing:0.3em;
+		transition:0.1s ease-in-out all;
+
+		&:after {
+			animation: scaleDown 100ms linear both;
+		}
+	}
+}
+
+
+// game styles
+.game-container {
+    width: 500px;
+    height: 500px;
     margin: 0 auto;
+    position: relative;
+    background-color: #fff;
+    border: 20px solid white;
+    border-radius: 1%;
+}
+
+.grid-container {
+    position: absolute;
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 15px;
     height: 500px;
     width: 500px;
+    z-index: 1;
 
     .grid-cell {
-        background-color:palegoldenrod;
+        background-color: #FDE9DE;
         width: 100%;
         height: 100%;
+        border-radius: 2%;
     }
 }
 
-// keyframes
-@include keyframes(appear) {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-  }
+.tile-container {
+    position: absolute;
+    z-index: 2;
 }
 
-@include keyframes(pop) {
-  0% {
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-  }
+$tile-size: 113.75px;
+.tile {
+    width: $tile-size;
+    height: $tile-size;
+    line-height: $tile-size;
+    z-index: 10;
+    font-size: 20px;
+    text-align: center;
+    background: white;
+    border-radius: 2%;
 
-  50% {
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-  }
+    @include transition(100ms ease-in-out);
+    @include transition-property(top, left, right, bottom);
 
-  100% {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-  }
+    // Build position classes
+    // from loop
+    @for $x from 1 through 4 {
+      @for $y from 1 through 4 {
+        &.tile-position-#{$x}-#{$y} {
+          // put items into correct grid position
+          position: absolute;
+          left: (($tile-size + 15px) * ($x - 1));
+          top: (($tile-size + 15px) * ($y - 1));
+        }
+      }
+    }
 }
+
+.tile-new {
+  @include animation(appear 200ms ease 100ms);
+  @include animation-fill-mode(both);
+}
+
+.tile-merged {
+  z-index: 20;
+  @include animation(pop 200ms ease 100ms);
+  @include animation-fill-mode(both);
+}
+
+
