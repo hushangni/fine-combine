@@ -8,53 +8,70 @@
     <title>Fine Combine</title>
     <!-- link to stylesheet -->
     <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:900,900i" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- game page header -->
-    <header class="container">
-        <h1 class="game-logo">Fine Combine</h1>
-        <!-- score -->
-        <div class="score" id="score">0</div>
-        <!-- have a side adding chart, dissapears on mobile -->
-    </header>
+    <!-- audio files -->
+    <audio src="assets/blop.wav" id="blop"></audio>
+    <audio src="assets/pop.wav" id="pop"></audio>
+    <audio src="assets/squish.wav" id="squish"></audio>
+    <audio src="assets/thin-ding.wav" id="thinDing"></audio>
+    <audio src="assets/medium-ding.wav" id="medDing"></audio>
+    <audio src="assets/thud.aiff" id="thud"></audio>
 
-    <!-- gameover overlay? try again button? -->
-    <div class="message">
-        <p></p>
-        <div class="lower">
-            <a class="retry-button">Try again</a>
-        </div>
-    </div>
+    <div class="full-game-container">
+        <!-- game page header -->
+        <header class="container">
 
-    <div class="game-container">
-        <!-- game grid -->
-        <div class="grid-container">
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
+            <h1 class="game-name">Juicy Jostle</h1>
+            <!-- score -->
+            <div class="time" id="time">0 mins 0 secs</div>
+            <!-- have a side adding chart, dissapears on mobile -->
+        </header>
 
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
+        <!-- gameover overlay? try again button? -->
+        <div class="message">
+            <p></p>
+            <div class="lower">
+                <a class="retry-button">Try again</a>
+            </div>
         </div>
 
-        <div class="tile-container">
-            <!-- generating new tiles -->
+        <div class="game-container">
+            <div class="logo-container game-logo-container">
+                <img src="assets/juicy-text.png" alt="juicy red swirl font with word juicy" class="juicy-font juicy-game-text">
+                <h2 class="jostle game-jostle">JOSTLE</h2>
+            </div>
+            <!-- game grid -->
+            <div class="grid-container">
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+
+            <div class="tile-container">
+                <!-- generating new tiles -->
+            </div>
         </div>
+
     </div>
 
     <!-- link to scripts -->

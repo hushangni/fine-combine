@@ -4,26 +4,37 @@
 @import "partials/__setup.scss";
 
 
-//
 img {
     display: block;
     width: 100%;
 }
 
+// hide H1 text visually but keep it available for accessibility
+.game-name {
+  position:absolute;
+  clip: rect(0 0 0 0);
+}
+
 body {
   background: rgb(253,220,149);
-background: linear-gradient(90deg, rgba(253,220,149,1) 0%, rgba(251,184,166,1) 100%);
+  background: linear-gradient(90deg, rgba(253,220,149,1) 0%, rgba(251,184,166,1) 100%);
   background-size: cover;
   height: 100vh;
   text-align: center;
 }
 
-img.juicy-font {
-  width: 80%;
-  margin: 0 auto;
+.center {
+  position: fixed; /* or absolute */
+  top: 40%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }
 
 .juicy-button {
+  position: relative;
+  top: 50px;
+  @include fontSize(14);
   text-decoration: none;
   background: white;
   padding: 30px;
@@ -31,7 +42,7 @@ img.juicy-font {
 	position:relative;
 	text-transform:uppercase;
 	text-decoration:none;
-	letter-spacing:0.3em;
+	letter-spacing:0.2em;
 	font-weight:bold;
 	color: #5e5e5e;
 	transition:0.2s ease-in-out all;
@@ -61,7 +72,7 @@ img.juicy-font {
 	}
 
 	&:active {
-		letter-spacing:0.3em;
+		letter-spacing:0.2em;
 		transition:0.1s ease-in-out all;
 
 		&:after {
@@ -69,6 +80,62 @@ img.juicy-font {
 		}
 	}
 }
+
+.logo-container {
+  position: relative;
+}
+
+div.game-logo-container {
+  position: absolute;
+  left: -25%;
+  top: -20%;
+  z-index: 4;
+  transform: rotate(-25deg);
+}
+
+img.juicy-index-text {
+  width: 600px;
+  margin: 0 auto;
+}
+
+img.juicy-game-text {
+  width: 270px;
+  margin: 0 auto;
+}
+
+.full-game-container {
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.jostle {
+  position: absolute;
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  -webkit-text-stroke: 0.1px red;
+  color: #fff;
+  text-shadow: -5px 5px 0px #E28D8E;
+  margin: 0;
+}
+
+.index-jostle {
+  top: 42%;
+  left: 50%;
+  @include fontSize(40);
+}
+
+.game-jostle {
+  top: 50%;
+  left: 49%;
+  @include fontSize(23);
+  -webkit-text-stroke: 0.5px #D04746;
+}
+
 
 
 // game styles
@@ -144,4 +211,7 @@ $tile-size: 113.75px;
   @include animation-fill-mode(both);
 }
 
+.win-image {
+
+}
 

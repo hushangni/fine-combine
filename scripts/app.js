@@ -1,11 +1,15 @@
 const fineApp = {};
 
-// gridSize times gridSized board
+// fine app variables
 fineApp.gridSize = 4;
 fineApp.score = 0;
 fineApp.gameOver = false;
 fineApp.gameWon = false;
 fineApp.winTile = 256;
+fineApp.seconds = 0;
+fineApp.minutes = 0;
+fineApp.interval;
+fineApp.time = $('#time')[0];
 
 fineApp.tileContainer = $('.tile-container')[0];
 fineApp.scoreContainer = $('#score')[0];
@@ -19,15 +23,18 @@ const fruitImages = [
     '<img src="assets/lemon.png" alt="">',
     '<img src="assets/pomegranate.png" alt="">',
     '<img src="assets/watermelon.png" alt="">',
-    '<img src="assets/fruitbowl.png" alt="">'
+    '<img src="assets/fruitbowl.png" alt="" class="win-image">'
 ];
-let blop  = new Howl({
-    src: ['../assets/blop.mp3', '../assets/blop.wav']
-});
+const thinDing = $('#thinDing')[0];
+const pop = $('#pop')[0];
 
-let images = fruitImages;
+const blop = $('#blop')[0];
+const squish = $('#squish')[0];
+const medDing = $('#medDing')[0];
 
-/////////////// KEYBOARD INPUT ///////////////
+fineApp.tileImgs = fruitImages;
+
+/////////////// KEYBOARD INPUT HANDLER ///////////////
 class KeyboardInput {
     constructor() {
         this.events = {};
@@ -260,7 +267,7 @@ fineApp.grid = {
                         const merged = new Tile(positions.next, tile.value * 2);
 
                         merged.mergedFrom = [tile, next];
-                        blop.play();
+                        pop.play();
                         fineApp.grid.pushTile(merged);
                         fineApp.grid.popTile(tile);
 
@@ -295,8 +302,6 @@ fineApp.grid = {
         }
     }
 };
-
-
 
 
 
@@ -382,10 +387,7 @@ fineApp.positionClass = position => {
 
 
 
-
-
-
-/////////////// UPDATING HTML ///////////////
+/////////////// UPDATING HTML FUNCTIONS ///////////////
 
 // add tile on to the HTML STUFF
 fineApp.addTileToBoard = tile => {
@@ -401,28 +403,28 @@ fineApp.addTileToBoard = tile => {
 
     switch (tile.value) {
         case 2:
-            item.html(images[0]);
+            item.html(fineApp.tileImgs[0]);
             break;
         case 4:
-            item.html(images[1]);
+            item.html(fineApp.tileImgs[1]);
             break;
         case 8:
-            item.html(images[2]);
+            item.html(fineApp.tileImgs[2]);
             break;
         case 16:
-            item.html(images[3]);
+            item.html(fineApp.tileImgs[3]);
             break;
         case 32:
-            item.html(images[4]);
+            item.html(fineApp.tileImgs[4]);
             break;
         case 64:
-            item.html(images[5]);
+            item.html(fineApp.tileImgs[5]);
             break;
         case 128:
-            item.html(images[6]);
+            item.html(fineApp.tileImgs[6]);
             break;
         case 256:
-            item.html(images[7]);
+            item.html(fineApp.tileImgs[7]);
             break;
         default:
             item.text(tile.value);
@@ -473,21 +475,26 @@ fineApp.updateBoard = () => {
                 }
             });
         });
-
-        if (fineApp.gameOver) {
-            console.log("game over!");
-        }
-
+        // update win
         if (fineApp.gameWon) {
+            thinDing.play();
+            fineApp.winModalOpen();
             console.log("you won!");
         }
 
-        // update score/time?
+        // update game over
+        if (fineApp.gameOver) {
+            fineApp.gameOverModalOpen();
+            console.log("game over!");
+        }
+
+        // update time?
         // update over
         // update win
     });
 };
 
+// fineApp.clearContainer();
 // clear out a HTML container
 fineApp.clearContainer = container => {
     while (container.firstChild) {
@@ -495,8 +502,37 @@ fineApp.clearContainer = container => {
     }
 };
 
+// fineApp.startTimer();
+// starts timing for the game
+fineApp.startTimer = () => {
+    interval = setInterval(function () {
+        fineApp.seconds++;
+
+        fineApp.time.innerHTML = fineApp.minutes + " mins " + fineApp.seconds + " secs";
+        if (fineApp.seconds == 60) {
+            fineApp.minutes++;
+            fineApp.seconds = 0;
+        }
+
+        if (fineApp.minutes == 60) {
+            alert("You have taken 1 hour to play this game! Ridiculous!");
+        }
+    }, 700);
+}
+
+// fineApp.winModalOpen();
+// opens winner modal upon win
+fineApp.winnerModalOpen = () => {
+    const finalTime = fineApp.time.innerHTML;
+
+}
 
 
+// fineApp.gameOverModalOpen();
+// opens game over modal upon win
+fineApp.gameOverModalOpen = () => {
+
+}
 
 
 
@@ -517,12 +553,13 @@ fineApp.init = () => {
     fineApp.keyListen = new KeyboardInput();
     fineApp.keyListen.listen();
     fineApp.updateBoard();
+    fineApp.startTimer();
     fineApp.keyListen.on("move", fineApp.grid.move.bind(this));
+
 
     // add starting tiles to board
     console.log("start/reseting game");
 }
-
 
 $(function() {
     console.log("ready");
