@@ -16,16 +16,16 @@ img {
 }
 
 body {
-  background: rgb(253,220,149);
-  background: linear-gradient(90deg, rgba(253,220,149,1) 0%, rgba(251,184,166,1) 100%);
+  background: $peach;
+  background: linear-gradient(90deg, $peach 0%, $pinkPeach 100%);
   background-size: cover;
   height: 100vh;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   color: white;
   @include fontSize(15);
-  text-shadow: -2px 3px 0px #E28D8E;
-  -webkit-text-stroke: 0.5px #D04746;
+  text-shadow: -2px 3px 0px $txtShadowPink;
+  -webkit-text-stroke: 0.5px $outlineRed;
 }
 
 .center {
@@ -69,7 +69,7 @@ body {
 
 	&:hover {
 		letter-spacing:0.4em;
-		color: rgba(251,184,166,1);
+		color: $btnPink;
 
 		&:after {
  			animation: bounceIn 1000ms linear both;
@@ -108,23 +108,24 @@ img.juicy-game-text {
   margin: 0 auto;
 }
 
+
 .full-game-container {
   height: 100%;
-  margin: 0 auto;
+  margin: 30px auto 0;
   display: flex;
   position: relative;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .jostle {
   position: absolute;
   font-family: 'Montserrat', sans-serif;
   font-style: italic;
-  -webkit-text-stroke: 0.1px #D04746;
+  -webkit-text-stroke: 0.1px $outlineRed;
   color: #fff;
-  text-shadow: -5px 5px 0px #E28D8E;
+  text-shadow: -5px 5px 0px $txtShadowPink;
   margin: 0;
 }
 
@@ -138,15 +139,68 @@ img.juicy-game-text {
   top: 50%;
   left: 49%;
   @include fontSize(23);
-  -webkit-text-stroke: 0.5px #D04746;
+  -webkit-text-stroke: 0.5px $outlineRed;
 }
 
+.time {
+  @include fontSize(18);
+  position: absolute;
+  top: -112px;
+  right: 1px;
+  text-shadow: none;
+  color: white;
+  letter-spacing: 0.1rem;
+  text-align: right;
+  border-radius: 5px;
+  margin-top: 50px;
 
+  -webkit-text-stroke: 0.7px $outlineRed;
+  text-shadow: -2px 2px 0px $txtShadowPink;
+}
 
+i {
+  color: $btnPink;
+  -webkit-text-stroke: 0.7px $outlineRed;
+  text-shadow: -2px 2px 0px $txtShadowPink;
+  @include fontSize(20);
+}
+
+.icon-buttons{
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  right: -90px;
+  i {
+    @include fontSize(20);
+    text-shadow: -3px 3px 0px $txtShadowPink;
+    margin: 15px;
+    color: white;
+  }
+
+  i:hover {
+    color: $outlineRed;
+    cursor: pointer;
+  }
+
+  .fa-sync-alt:hover {
+    animation: spin 2s infinite;
+  }
+
+  .fa-question:hover {
+    animation: wiggle 2s infinite;
+  }
+
+  .fa-heart:hover {
+    animation: pulse 1.2s infinite;
+  }
+
+}
 
 
 // game styles
 .game-container {
+    grid-column-start: 1;
     width: 500px;
     height: 500px;
     margin: 0 auto;
@@ -187,7 +241,7 @@ $tile-size: 113.75px;
     z-index: 10;
     font-size: 20px;
     text-align: center;
-    background: grey;
+    background: white;
     border-radius: 2%;
 
     @include transition(100ms ease-in-out);
@@ -227,7 +281,8 @@ $tile-size: 113.75px;
 
 }
 
-.tile:before{
+
+.tile-merged:before{
   content:"";
   z-index:111;
   position:absolute;height:200%;width:200%;top:-120%;left:-120%;
@@ -236,9 +291,9 @@ $tile-size: 113.75px;
     rgba(255, 255, 255, 0.5) 50%,
     rgba(255, 255, 255, 0.1) 55%,
     transparent 100%);
-    transition:all 2s;
+    transition:all 3s;
     transform:rotate(-45deg);
-    animation: shine 1s infinite forwards;
+    animation: shine 10s infinite forwards;
 }
 @keyframes shine{
   0%{top:-120%;left:-120%;}

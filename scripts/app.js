@@ -508,7 +508,7 @@ fineApp.startTimer = () => {
     interval = setInterval(function () {
         fineApp.seconds++;
 
-        fineApp.time.innerHTML = fineApp.minutes + " mins " + fineApp.seconds + " secs";
+        fineApp.time.innerHTML = fineApp.minutes + "m " + fineApp.seconds + "s";
         if (fineApp.seconds == 60) {
             fineApp.minutes++;
             fineApp.seconds = 0;
