@@ -172,7 +172,7 @@ i {
   flex-direction: column;
   right: -90px;
   i {
-    @include fontSize(20);
+    @include fontSize(22);
     text-shadow: -3px 3px 0px $txtShadowPink;
     margin: 15px;
     color: white;
@@ -303,3 +303,7 @@ $tile-size: 113.75px;
 
 }
 
+
+
+// media width: 705
+// media height: 655

@@ -505,7 +505,7 @@ fineApp.clearContainer = container => {
 // fineApp.startTimer();
 // starts timing for the game
 fineApp.startTimer = () => {
-    interval = setInterval(function () {
+    fineApp.interval = setInterval(function () {
         fineApp.seconds++;
 
         fineApp.time.innerHTML = fineApp.minutes + "m " + fineApp.seconds + "s";
@@ -534,7 +534,18 @@ fineApp.gameOverModalOpen = () => {
 
 }
 
-
+// fineApp.restart();
+// restarts game when the restart button is clicked
+fineApp.restart = () => {
+    fineApp.seconds = 0;
+    fineApp.minutes = 0;
+    fineApp.time.innerHTML = fineApp.minutes + "m " + fineApp.seconds + "s";
+    clearInterval(fineApp.interval);
+    fineApp.startTimer();
+    fineApp.grid.buildGrid();
+    fineApp.grid.addStartTiles();
+    fineApp.updateBoard();
+}
 
 
 
@@ -565,4 +576,5 @@ $(function() {
     console.log("ready");
     fineApp.init();
 
+    $('.fa-sync-alt').on('click', fineApp.restart);
 })
