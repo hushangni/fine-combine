@@ -26,6 +26,29 @@ const fruitImages = [
     '<img src="assets/watermelon.png" alt="">',
     '<img src="assets/fruitbowl.png" alt="" class="win-image">'
 ];
+
+const fruitFacts = [
+    'A strawberry is not a berry, but a banana is.',
+    'Apples, peaches and raspberries are all members of the rose family.',
+    "The world's most popular fruit is the tomato.",
+    "Coffee beans aren't beans, they're fruit pits.",
+    "Square watermelons are grown by japanese farmers for easier stack and store.",
+    "The color Orange was named after the fruit, but before that, the color was called geoluread (yellow-red).",
+    "Pomology, is the study of fruits.",
+    "There is a tree called Fruit Salad Tree, and it sprouts 3 - 7 different fruits.",
+    "Fruits don't die the moment they are harvested, they respond to the environemnt days after.",
+    "Tomatos have more genes than humans",
+    "We share 50% of our DNA with bananas",
+    "The pinapple is a berry.",
+    "After eating the 'miracle fruit', sour foods will taste sweet for 1-2 hours",
+    "Stickers found on fruits are edible!",
+    "Pineapples were so expensive in 1700s, people would rent a pineapple and parade it around as a demonstration of their wealth.",
+    "Durian, or known as the world's smelliest fruit, is so stinky it is not allowed on some buses and in some hotels.",
+    "Adding salt to pineapple causes it to taste sweeter, reducing the bitterness of the fruit.",
+    "Watermelons contain citrulline that can trigger production of a compound that helps relax the body's blood vessels, just like Viagra.",
+    "Kiwis use to be called melonettes",
+    
+]
 const thinDing = $('#thinDing')[0];
 const pop = $('#pop')[0];
 
