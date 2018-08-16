@@ -49,7 +49,7 @@ body {
 	text-decoration:none;
 	letter-spacing:0.2em;
 	font-weight:bold;
-	color: #5e5e5e;
+	color: $btnPink;
 	transition:0.2s ease-in-out all;
 	margin-bottom:30px;
 
@@ -69,7 +69,7 @@ body {
 
 	&:hover {
 		letter-spacing:0.4em;
-		color: $btnPink;
+		color: $peach;
 
 		&:after {
  			animation: bounceIn 1000ms linear both;
@@ -238,6 +238,7 @@ $tile-size: 113.75px;
     width: $tile-size;
     height: $tile-size;
     line-height: $tile-size;
+    overflow: hidden;
     z-index: 10;
     font-size: 20px;
     text-align: center;
@@ -272,17 +273,8 @@ $tile-size: 113.75px;
   @include animation-fill-mode(both);
 }
 
-.win-image {
 
-}
-
-.tile {
-  overflow: hidden;
-
-}
-
-
-.tile-merged:before{
+.tile-merged:before {
   content:"";
   z-index:111;
   position:absolute;height:200%;width:200%;top:-120%;left:-120%;
@@ -291,17 +283,63 @@ $tile-size: 113.75px;
     rgba(255, 255, 255, 0.5) 50%,
     rgba(255, 255, 255, 0.1) 55%,
     transparent 100%);
-    transition:all 3s;
+    transition:all 5s;
     transform:rotate(-45deg);
     animation: shine 10s infinite forwards;
 }
-@keyframes shine{
-  0%{top:-120%;left:-120%;}
-  10%{left:100%;top:100%;}
-  20%{left:100%;top:100%;}
-  100%{left:100%;top:100%;}
 
+.winner-modal {
+  background: $peach;
+  position: absolute;
+  z-index: 50;
+  width: 400px;
+  height: 230px;
+  border-radius: 5px;
+  padding: 30px;
+  overflow: hidden;
+  display:none;
+  transition: all 1s ease-out;
 }
+
+.show {
+  display: block;
+}
+
+.juice-again-button {
+  padding: 21px 25px;
+}
+
+.winner-modal:before{
+    content:"";
+  z-index:111;
+  position:absolute;height:200%;width:300%;top:-120%;left:-120%;
+  background:linear-gradient(transparent 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.1) 55%,
+    transparent 100%);
+    transition:all 6s;
+    transform:rotate(-45deg);
+    animation: shine 10s infinite forwards;
+}
+
+.fa-times {
+  position: absolute;
+  z-index: 112;
+  padding: 0;
+  color: white;
+  right: 18px;
+  top: 15px;
+  @include fontSize(24);
+  cursor: pointer;
+}
+
+.fa-times:hover {
+  color: $peach;
+  animation: spin 3s infinite;
+}
+
+
 
 
 

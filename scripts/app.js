@@ -10,6 +10,7 @@ fineApp.seconds = 0;
 fineApp.minutes = 0;
 fineApp.interval;
 fineApp.time = $('#time')[0];
+fineApp.winModal = $('.winner-modal')[0];
 
 fineApp.tileContainer = $('.tile-container')[0];
 fineApp.scoreContainer = $('#score')[0];
@@ -478,7 +479,7 @@ fineApp.updateBoard = () => {
         // update win
         if (fineApp.gameWon) {
             thinDing.play();
-            fineApp.winModalOpen();
+            fineApp.winnerModalOpen();
             console.log("you won!");
         }
 
@@ -517,16 +518,17 @@ fineApp.startTimer = () => {
         if (fineApp.minutes == 60) {
             alert("You have taken 1 hour to play this game! Ridiculous!");
         }
-    }, 700);
+    }, 750);
 }
 
 // fineApp.winModalOpen();
 // opens winner modal upon win
 fineApp.winnerModalOpen = () => {
     const finalTime = fineApp.time.innerHTML;
-
+    setTimeout(function () {
+        fineApp.winModal.classList.add("show");
+    }, 600);
 }
-
 
 // fineApp.gameOverModalOpen();
 // opens game over modal upon win
@@ -577,4 +579,8 @@ $(function() {
     fineApp.init();
 
     $('.fa-sync-alt').on('click', fineApp.restart);
+    $('.fa-times').on('click', )
+    $('.fa-times').on('click', function (e) {
+        fineApp.winModal.classList.remove('show');
+    });
 })
