@@ -856,7 +856,8 @@ i {
   -webkit-animation: shine 10s infinite forwards;
   animation: shine 10s infinite forwards; }
 
-.winner-modal {
+.winner-modal,
+.game-over-modal {
   background: #fddc95;
   position: absolute;
   z-index: 50;
@@ -876,7 +877,8 @@ i {
 .juice-again-button {
   padding: 21px 25px; }
 
-.winner-modal:before {
+.winner-modal:before,
+.game-over-modal:before {
   content: "";
   z-index: 111;
   position: absolute;

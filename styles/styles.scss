@@ -288,7 +288,8 @@ $tile-size: 113.75px;
     animation: shine 10s infinite forwards;
 }
 
-.winner-modal {
+.winner-modal,
+.game-over-modal {
   background: $peach;
   position: absolute;
   z-index: 50;
@@ -309,7 +310,8 @@ $tile-size: 113.75px;
   padding: 21px 25px;
 }
 
-.winner-modal:before{
+.winner-modal:before,
+.game-over-modal:before {
     content:"";
   z-index:111;
   position:absolute;height:200%;width:300%;top:-120%;left:-120%;

@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fine Combine</title>
-    <link rel="stylesheet" href="font-awesome-animation.min.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:900,900i" rel="stylesheet">
+    <!-- link to font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-        crossorigin="anonymous">
+            crossorigin="anonymous">
+    <!-- link to google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:900,900i" rel="stylesheet">
     <!-- link to stylesheet -->
     <link rel="stylesheet" href="styles/styles.css">
 </head>
@@ -25,12 +25,21 @@
     <audio src="assets/medium-ding.wav" id="medDing"></audio>
     <audio src="assets/thud.aiff" id="thud"></audio>
 
+    <!-- game container starts here -->
     <div class="full-game-container">
         <h1 class="game-name">Juicy Jostle</h1>
 
+        <!-- winner modal -->
         <div class="winner-modal">
             <i class="fas fa-times"></i>
             <h2>Winner!</h2>
+            <a href="./game.html" class="juicy-button juice-again-button">juice again</a>
+        </div>
+
+        <!-- game over modal -->
+        <div class="game-over-modal">
+            <i class="fas fa-times"></i>
+            <h2>Game Over!</h2>
             <a href="./game.html" class="juicy-button juice-again-button">juice again</a>
         </div>
 
@@ -74,59 +83,6 @@
                     <!-- generating new tiles -->
                 </div>
             </div><!-- game container end -->
-
-            <div class="side-container">
-                <!-- game flow chart -->
-                <!-- <div class="flow-chart">
-                    <div class="col1">
-                        <div class="flow-img">
-                            <img src="assets/kiwi.png" alt="">
-                            <i class="fas fa-angle-down"></i>
-                        </div>
-
-                        <div class="flow-img">
-                            <img src="assets/papaya.png" alt="">
-                            <i class="fas fa-angle-down"></i>
-                        </div>
-
-                        <div class="flow-img">
-                            <img src="assets/coconut.png" alt="">
-                            <i class="fas fa-angle-down"></i>
-                        </div>
-
-                        <div class="flow-img">
-                            <img src="assets/dragonfruit.png" alt="">
-                            <i class="fas fa-angle-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="col2">
-                        <div class="flow-img">
-                            <img src="assets/fruitbowl.png" alt="">
-                            <i class="fas fa-angle-up"></i>
-                        </div>
-
-                        <div class="flow-img">
-                            <img src="assets/lemon.png" alt="">
-                            <i class="fas fa-angle-up"></i>
-                        </div>
-
-                        <div class="flow-img">
-                            <img src="assets/watermelon.png" alt="">
-                            <i class="fas fa-angle-up"></i>
-                        </div>
-
-                        <div class="flow-img">
-                            <img src="assets/pomegranate.png" alt="">
-                        </div>
-                    </div>
-
-                </div> -->
-
-                <!-- restart button -->
-
-
-            </div><!-- side container -->
 
     </div>
 
