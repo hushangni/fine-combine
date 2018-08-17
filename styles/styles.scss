@@ -28,6 +28,18 @@ body {
   -webkit-text-stroke: 0.5px $outlineRed;
 }
 
+.fa-question:hover {
+  animation: wiggle 2s infinite;
+}
+
+.fa-heart:hover {
+  animation: pulse 1.2s infinite;
+}
+
+.fa-sync-alt:hover {
+  animation: spin 2s infinite;
+}
+
 .center {
   position: fixed; /* or absolute */
   top: 40%;
@@ -35,6 +47,22 @@ body {
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
+
+.index-icon {
+  top: 50px;
+  @include fontSize(22);
+  margin: 0 30px;
+}
+
+i.index-icon:hover {
+    color: $outlineRed;
+    cursor: pointer;
+}
+
+.question-modal {
+  margin: 0 auto;
+}
+
 
 .juicy-button {
   position: relative;
@@ -85,6 +113,8 @@ body {
 		}
 	}
 }
+
+
 
 .logo-container {
   position: relative;
@@ -159,7 +189,8 @@ img.juicy-game-text {
 }
 
 i {
-  color: $btnPink;
+  color: white;
+  position: relative;
   -webkit-text-stroke: 0.7px $outlineRed;
   text-shadow: -2px 2px 0px $txtShadowPink;
   @include fontSize(20);
@@ -182,19 +213,6 @@ i {
     color: $outlineRed;
     cursor: pointer;
   }
-
-  .fa-sync-alt:hover {
-    animation: spin 2s infinite;
-  }
-
-  .fa-question:hover {
-    animation: wiggle 2s infinite;
-  }
-
-  .fa-heart:hover {
-    animation: pulse 1.2s infinite;
-  }
-
 }
 
 
@@ -288,8 +306,7 @@ $tile-size: 113.75px;
     animation: shine 10s infinite forwards;
 }
 
-.winner-modal,
-.game-over-modal {
+.modal {
   background: $peach;
   position: absolute;
   z-index: 50;
@@ -310,8 +327,7 @@ $tile-size: 113.75px;
   padding: 21px 25px;
 }
 
-.winner-modal:before,
-.game-over-modal:before {
+.modal:before {
     content:"";
   z-index:111;
   position:absolute;height:200%;width:300%;top:-120%;left:-120%;

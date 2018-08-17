@@ -543,6 +543,18 @@ body {
   text-shadow: -2px 3px 0px #E28D8E;
   -webkit-text-stroke: 0.5px #D04746; }
 
+.fa-question:hover {
+  -webkit-animation: wiggle 2s infinite;
+  animation: wiggle 2s infinite; }
+
+.fa-heart:hover {
+  -webkit-animation: pulse 1.2s infinite;
+  animation: pulse 1.2s infinite; }
+
+.fa-sync-alt:hover {
+  -webkit-animation: spin 2s infinite;
+  animation: spin 2s infinite; }
+
 .center {
   position: fixed;
   /* or absolute */
@@ -552,6 +564,19 @@ body {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
+
+.index-icon {
+  top: 50px;
+  font-size: 22px;
+  font-size: 2.2rem;
+  margin: 0 30px; }
+
+i.index-icon:hover {
+  color: #D04746;
+  cursor: pointer; }
+
+.question-modal {
+  margin: 0 auto; }
 
 .juicy-button {
   position: relative;
@@ -678,7 +703,8 @@ img.juicy-game-text {
   text-shadow: -2px 2px 0px #E28D8E; }
 
 i {
-  color: #fbb8a6;
+  color: white;
+  position: relative;
   -webkit-text-stroke: 0.7px #D04746;
   text-shadow: -2px 2px 0px #E28D8E;
   font-size: 20px;
@@ -704,15 +730,6 @@ i {
   .icon-buttons i:hover {
     color: #D04746;
     cursor: pointer; }
-  .icon-buttons .fa-sync-alt:hover {
-    -webkit-animation: spin 2s infinite;
-    animation: spin 2s infinite; }
-  .icon-buttons .fa-question:hover {
-    -webkit-animation: wiggle 2s infinite;
-    animation: wiggle 2s infinite; }
-  .icon-buttons .fa-heart:hover {
-    -webkit-animation: pulse 1.2s infinite;
-    animation: pulse 1.2s infinite; }
 
 .game-container {
   grid-column-start: 1;
@@ -856,8 +873,7 @@ i {
   -webkit-animation: shine 10s infinite forwards;
   animation: shine 10s infinite forwards; }
 
-.winner-modal,
-.game-over-modal {
+.modal {
   background: #fddc95;
   position: absolute;
   z-index: 50;
@@ -877,8 +893,7 @@ i {
 .juice-again-button {
   padding: 21px 25px; }
 
-.winner-modal:before,
-.game-over-modal:before {
+.modal:before {
   content: "";
   z-index: 111;
   position: absolute;

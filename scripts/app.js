@@ -11,6 +11,8 @@ fineApp.minutes = 0;
 fineApp.interval;
 fineApp.time = $('#time')[0];
 fineApp.winModal = $('.winner-modal')[0];
+fineApp.questionModal = $('.question-modal');
+fineApp.heartModal = $('.heart-modal');
 
 fineApp.tileContainer = $('.tile-container')[0];
 fineApp.scoreContainer = $('#score')[0];
@@ -50,7 +52,7 @@ const fruitFacts = [
 ]
 
 const thinDing = $('#thinDing')[0];
-const pop = $('#pop')[0];
+const pop = $('#pop')[0]; // doesn't work when it is hosted on github (on FireFox only);
 
 const blop = $('#blop')[0];
 const squish = $('#squish')[0];
@@ -599,11 +601,27 @@ fineApp.init = () => {
 
 $(function() {
     console.log("ready");
+    $('.juicy-button').on('mouseover', function () {
+        squish.play();
+    })
     fineApp.init();
+    $('.fa-sync-alt').on('mousedown', function() {
+        squish.play();
+    })
+    $('.fa-question').on('click', function(e) {
+        fineApp.questionModal.addClass('show');
+    });
+
+    $('.fa-heart').on('click', function(e) {
+        fineApp.heartModal.addClass('show');
+    });
 
     $('.fa-sync-alt').on('click', fineApp.restart);
-    $('.fa-times').on('click', )
+
     $('.fa-times').on('click', function (e) {
+        e.preventDefault();
+        fineApp.questionModal[0].classList.remove('show');
+        fineApp.heartModal[0].classList.remove('show');
         fineApp.winModal.classList.remove('show');
     });
 })
