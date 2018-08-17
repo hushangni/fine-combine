@@ -46,9 +46,9 @@ const fruitFacts = [
     "Durian, or known as the world's smelliest fruit, is so stinky it is not allowed on some buses and in some hotels.",
     "Adding salt to pineapple causes it to taste sweeter, reducing the bitterness of the fruit.",
     "Watermelons contain citrulline that can trigger production of a compound that helps relax the body's blood vessels, just like Viagra.",
-    "Kiwis use to be called melonettes",
-    
+    "Kiwis use to be called melonettes"
 ]
+
 const thinDing = $('#thinDing')[0];
 const pop = $('#pop')[0];
 
@@ -291,7 +291,7 @@ fineApp.grid = {
                         const merged = new Tile(positions.next, tile.value * 2);
 
                         merged.mergedFrom = [tile, next];
-                        pop.play();
+                        blop.play();
                         fineApp.grid.pushTile(merged);
                         fineApp.grid.popTile(tile);
 
