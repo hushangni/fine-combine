@@ -16,24 +16,41 @@
 <body>
     <audio src="assets/squish.wav" id="squish"></audio>
     <audio src="assets/blop.wav" id="blop"></audio>
-    <div class="center">
+    <div class="index-container">
 
         <!-- how to play modal -->
-        <div class="question-modal modal">
-            <i class="fas fa-times"></i>
+        <div class="question-modal modal index-modal">
+            <i class="fas fa-times index-times"></i>
             <h2>How to Play</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, officiis mollitia quisquam, aliquam numquam sapiente sed ea asperiores nesciunt rem nisi iste distinctio inventore optio at harum laboriosam odio sunt?</p>
+            <h3>Feeling Juicy?</h3>
+            <p>Match 2 of the same fruit to create more complex fruits.</p>
+            <div class="how-to-fruits">
+                <img src="assets/kiwi.png" alt="kiwi">
+                <i class="fas fa-plus"></i>
+                <img src="assets/kiwi.png" alt="kiwi">
+                <i class="fas fa-angle-double-right"></i>
+                <img src="assets/papaya.png" alt="papaya">
+            </div>
+            <p>Press the
+                <i class="fas fa-caret-square-up"></i>
+                <i class="fas fa-caret-square-right"></i>
+                <i class="fas fa-caret-square-down"></i>
+                <i class="fas fa-caret-square-left"></i>
+                keys to tilt the fruits on the game board to make matches.
+            </p>
+
         </div>
 
-        <div class="heart-modal modal">
+        <div class="heart-modal modal index-modal index-times">
             <i class="fas fa-times"></i>
             <h2>Credits</h2>
-            <p>Thank to </p>
+            <p>Thank to</p>
         </div>
 
 
 
         <div class="logo-container">
+            <!-- how to play modal -->
             <img src="./assets/Juicy.png" alt="juicy font" class="juicy-font juicy-index-text">
             <h2 class="jostle index-jostle">JOSTLE</h2>
         </div>
@@ -41,9 +58,11 @@
         <!-- hidden h1 visually -->
         <h1 class="game-name">Juicy Jostle</h1>
 
-        <i class="fas fa-question index-icon"></i>
-        <a href="./game.html" class="juicy-button" id="getJuicy">get juicy</a>
-        <i class="fas fa-heart index-icon"></i>
+        <div class="button-bar">
+            <i class="fas fa-question index-icon"></i>
+            <a href="./game.html" class="juicy-button" id="getJuicy">get juicy</a>
+            <i class="fas fa-heart index-icon"></i>
+        </div>
     </div>
 
     <!-- link to scripts -->

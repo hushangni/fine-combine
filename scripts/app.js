@@ -5,12 +5,12 @@ fineApp.gridSize = 4;
 fineApp.score = 0;
 fineApp.gameOver = false;
 fineApp.gameWon = false;
-fineApp.winTile = 256;
+fineApp.winTile = 8;
 fineApp.seconds = 0;
 fineApp.minutes = 0;
 fineApp.interval;
 fineApp.time = $('#time')[0];
-fineApp.winModal = $('.winner-modal')[0];
+fineApp.winModal = $('.winner-modal');
 fineApp.questionModal = $('.question-modal');
 fineApp.heartModal = $('.heart-modal');
 
@@ -303,7 +303,7 @@ fineApp.grid = {
 
 
                         // the end tile
-                        if (merged.value === 256) {
+                        if (merged.value === fineApp.winTile) {
                             fineApp.gameWon = true;
                         }
                     } else {
@@ -551,7 +551,7 @@ fineApp.startTimer = () => {
 fineApp.winnerModalOpen = () => {
     const finalTime = fineApp.time.innerHTML;
     setTimeout(function () {
-        fineApp.winModal.classList.add("show");
+        fineApp.winModal[0].classList.add("show");
     }, 600);
 }
 
@@ -618,10 +618,12 @@ $(function() {
 
     $('.fa-sync-alt').on('click', fineApp.restart);
 
-    $('.fa-times').on('click', function (e) {
-        e.preventDefault();
+    $('.index-times').on('click', function() {
         fineApp.questionModal[0].classList.remove('show');
         fineApp.heartModal[0].classList.remove('show');
-        fineApp.winModal.classList.remove('show');
+    })
+
+    $('.fa-times').on('click', function () {
+        fineApp.winModal[0].classList.remove('show');
     });
 })
