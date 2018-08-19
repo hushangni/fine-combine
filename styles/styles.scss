@@ -13,20 +13,6 @@ h2 {
   @include fontSize(28);
 }
 
-
-// hide H1 text visually but keep it available for accessibility
-.game-name {
-  position:absolute;
-  clip: rect(0 0 0 0);
-}
-
-.index-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-}
-
 body {
   background: $peach;
   background: linear-gradient(90deg, $peach 0%, $pinkPeach 100%);
@@ -41,6 +27,21 @@ body {
   -webkit-text-stroke: 0.5px $outlineRed;
 }
 
+// hide H1 text visually but keep it available for accessibility
+.game-name {
+  position:absolute;
+  clip: rect(0 0 0 0);
+}
+
+
+//// INDEX STYLES //////////////
+.index-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
 // MODALS/////////////////////
 .modal {
   background: $peach;
@@ -51,6 +52,10 @@ body {
   overflow: hidden;
   display: none;
   transition: all 1s ease-out;
+}
+
+.show {
+  display: block;
 }
 
 .index-modal {
@@ -66,14 +71,7 @@ body {
       @include fontSize(28);
     }
   }
-}
-
-.game-modal {
-  width: 400px;
-  height: 320px;
-}
-
-.modal:before {
+  &:before {
     content:"";
     z-index:111;
     position:absolute;height:200%;width:300%;top:-120%;left:-120%;
@@ -85,10 +83,12 @@ body {
     transition:all 6s;
     transform:rotate(-45deg);
     animation: shine 10s infinite forwards;
+  }
 }
 
-.show {
-  display: block;
+.game-modal {
+  width: 400px;
+  height: 320px;
 }
 
 .question-modal {
@@ -151,10 +151,15 @@ body {
 }
 
 
-
-
-
 // ICONS ///////////
+i {
+  color: white;
+  position: relative;
+  -webkit-text-stroke: 0.7px $outlineRed;
+  text-shadow: -2px 2px 0px $txtShadowPink;
+  @include fontSize(20);
+}
+
 .fa-question:hover {
   animation: wiggle 2s infinite;
 }
@@ -169,22 +174,21 @@ body {
 
 .button-bar {
   position: relative;
-
 }
 
 .index-icon {
   @include fontSize(22);
   position: absolute;
   top: 45px;
+  &.fa-question {
+    left: -80px;
+  }
+
+  &.fa-heart {
+    right: -80px;
+  }
 }
 
-.index-icon.fa-question {
-  left: -80px;
-}
-
-.index-icon.fa-heart {
-  right: -80px;
-}
 
 i.index-icon:hover {
     color: $outlineRed;
@@ -249,6 +253,29 @@ i.index-icon:hover {
   top: 24px;
   @include fontSize(26);
   cursor: pointer;
+  &:hover {
+    color: $peach;
+    animation: spin 3s infinite;
+  }
+}
+
+.icon-buttons{
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  right: -90px;
+  i {
+    @include fontSize(22);
+    text-shadow: -3px 3px 0px $txtShadowPink;
+    margin: 15px;
+    color: white;
+  }
+
+  i:hover {
+    color: $outlineRed;
+    cursor: pointer;
+  }
 }
 
 .index-times {
@@ -256,16 +283,10 @@ i.index-icon:hover {
   top: 40px;
 }
 
-.fa-times:hover {
-  color: $peach;
-  animation: spin 3s infinite;
-}
-
-// LOGO////////////////
+// LOGO ////////////////
 .logo-container {
   margin-top: 8%;
   position: relative;
-  cursor: url("../assets/Peach_Emoji.png"), auto;
 }
 
 div.game-logo-container {
@@ -321,6 +342,9 @@ img.juicy-game-text {
   -webkit-text-stroke: 0.5px $outlineRed;
 }
 
+
+// GAME ASSETS ////////////
+
 .time-container {
   position: relative;
   width: 500px;
@@ -337,40 +361,16 @@ img.juicy-game-text {
   letter-spacing: 0.1rem;
   text-align: right;
   border-radius: 5px;
-
   -webkit-text-stroke: 0.7px $outlineRed;
   text-shadow: -2px 2px 0px $txtShadowPink;
 }
 
-i {
-  color: white;
-  position: relative;
-  -webkit-text-stroke: 0.7px $outlineRed;
-  text-shadow: -2px 2px 0px $txtShadowPink;
-  @include fontSize(20);
-}
-
-.icon-buttons{
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  right: -90px;
-  i {
-    @include fontSize(22);
-    text-shadow: -3px 3px 0px $txtShadowPink;
-    margin: 15px;
-    color: white;
-  }
-
-  i:hover {
-    color: $outlineRed;
-    cursor: pointer;
-  }
+.juice-again-button {
+  padding: 21px 25px;
 }
 
 
-// game styles
+// GAME STYLES /////////////
 .game-container {
     grid-column-start: 1;
     width: 500px;
@@ -460,15 +460,83 @@ $tile-size: 113.75px;
     animation: shine 10s infinite forwards;
 }
 
-.juice-again-button {
-  padding: 21px 25px;
-}
-
-
-
-
-
 
 
 // media width: 705
+@media only screen and (max-width: 705px) {
+  div.game-logo-container {
+    display: none;
+  }
+
+  .icon-buttons {
+    flex-direction: row;
+    left: -20px;
+    top: -82px;
+    right: 0;
+  }
+
+  .time-container {
+    width: 499px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .game-container {
+    width: 300px;
+    height: 300px;
+    border: 10px solid white;
+    border-radius: 1%;
+  }
+
+  .grid-container {
+      grid-gap: 10px;
+      height: 300px;
+      width: 300px;
+  }
+
+  $tile-size: 67.5px;
+  .tile {
+    width: $tile-size;
+    height: $tile-size;
+    line-height: $tile-size;
+    @include fontSize(11);
+
+    // Build position classes
+    // from loop
+    @for $x from 1 through 4 {
+      @for $y from 1 through 4 {
+        &.tile-position-#{$x}-#{$y} {
+          // put items into correct grid position
+          position: absolute;
+          left: (($tile-size + 10px) * ($x - 1));
+          top: (($tile-size + 10px) * ($y - 1));
+        }
+      }
+    }
+  }
+
+  .icon-buttons {
+    left: -10px;
+    top: -70px;
+    i {
+      @include fontSize(20);
+    }
+  }
+
+  .time-container {
+    width: 300px;
+  }
+  .time {
+  @include fontSize(18);
+    right: 0;
+    top: -6px;
+    text-shadow: none;
+    color: white;
+    letter-spacing: 0.1rem;
+    text-align: right;
+    border-radius: 5px;
+    -webkit-text-stroke: 0.7px $outlineRed;
+    text-shadow: -2px 2px 0px $txtShadowPink;
+  }
+}
 // media height: 655
