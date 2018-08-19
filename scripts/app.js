@@ -5,7 +5,7 @@ fineApp.gridSize = 4;
 fineApp.score = 0;
 fineApp.gameOver = false;
 fineApp.gameWon = false;
-fineApp.winTile = 256;
+fineApp.winTile = 8;
 fineApp.seconds = 0;
 fineApp.minutes = 0;
 fineApp.finalTimes = $('#finalTime')[0];
@@ -306,6 +306,7 @@ fineApp.grid = {
 
                         // the end tile
                         if (merged.value === fineApp.winTile) {
+                            fineApp.gameOver = true;
                             fineApp.gameWon = true;
                         }
                     } else {

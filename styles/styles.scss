@@ -30,6 +30,7 @@ h2 {
 body {
   background: $peach;
   background: linear-gradient(90deg, $peach 0%, $pinkPeach 100%);
+  cursor: url("../assets/Peach_Emoji.png"), auto;
   background-size: cover;
   height: 100vh;
   text-align: center;
@@ -131,7 +132,11 @@ body {
 
 
   .tweet-line:hover .fa-twitter{
-    animation: wiggle 2s infinite;
+    animation: wiggle 1s infinite;
+  }
+
+  .tweet-line:hover #tweet {
+    transform: scale(1.05, 1.05);
   }
 
   #tweet,
@@ -140,7 +145,9 @@ body {
     text-decoration: none;
     -webkit-text-stroke: 0.5px white;
     text-shadow: -2px 2px 0px white;
+    transition: 0.2s ease-in-out all;
   }
+
 }
 
 
@@ -258,6 +265,7 @@ i.index-icon:hover {
 .logo-container {
   margin-top: 8%;
   position: relative;
+  cursor: url("../assets/Peach_Emoji.png"), auto;
 }
 
 div.game-logo-container {

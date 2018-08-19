@@ -598,6 +598,7 @@ body {
   background: -webkit-linear-gradient(left, #fddc95 0%, #fbb8a6 100%);
   background: -o-linear-gradient(left, #fddc95 0%, #fbb8a6 100%);
   background: linear-gradient(90deg, #fddc95 0%, #fbb8a6 100%);
+  cursor: url("../assets/Peach_Emoji.png"), auto;
   background-size: cover;
   height: 100vh;
   text-align: center;
@@ -698,15 +699,23 @@ body {
   margin: 8px; }
 
 .winner-modal .tweet-line:hover .fa-twitter {
-  -webkit-animation: wiggle 2s infinite;
-  animation: wiggle 2s infinite; }
+  -webkit-animation: wiggle 1s infinite;
+  animation: wiggle 1s infinite; }
+
+.winner-modal .tweet-line:hover #tweet {
+  -webkit-transform: scale(1.05, 1.05);
+  -ms-transform: scale(1.05, 1.05);
+  transform: scale(1.05, 1.05); }
 
 .winner-modal #tweet,
 .winner-modal .fa-twitter {
   color: #55ACEE;
   text-decoration: none;
   -webkit-text-stroke: 0.5px white;
-  text-shadow: -2px 2px 0px white; }
+  text-shadow: -2px 2px 0px white;
+  -webkit-transition: 0.2s ease-in-out all;
+  -o-transition: 0.2s ease-in-out all;
+  transition: 0.2s ease-in-out all; }
 
 .fa-question:hover {
   -webkit-animation: wiggle 2s infinite;
@@ -809,7 +818,8 @@ i.index-icon:hover {
 
 .logo-container {
   margin-top: 8%;
-  position: relative; }
+  position: relative;
+  cursor: url("../assets/Peach_Emoji.png"), auto; }
 
 div.game-logo-container {
   position: absolute;
