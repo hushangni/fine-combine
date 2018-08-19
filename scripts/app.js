@@ -8,6 +8,7 @@ fineApp.gameWon = false;
 fineApp.winTile = 8;
 fineApp.seconds = 0;
 fineApp.minutes = 0;
+fineApp.finalTimes = $('#finalTime')[0];
 fineApp.interval;
 fineApp.time = $('#time')[0];
 fineApp.winModal = $('.winner-modal');
@@ -54,6 +55,7 @@ const fruitFacts = [
 const thinDing = $('#thinDing')[0];
 const pop = $('#pop')[0]; // doesn't work when it is hosted on github (on FireFox only);
 
+const tweeter = $('#tweeter')[0];
 const blop = $('#blop')[0];
 const squish = $('#squish')[0];
 const medDing = $('#medDing')[0];
@@ -504,6 +506,12 @@ fineApp.updateBoard = () => {
         // update win
         if (fineApp.gameWon) {
             thinDing.play();
+            // Allow user to tweet their final score
+            $('#tweet').attr({
+                href: 'https://twitter.com/intent/tweet?text="I just got Juicy in ' + fineApp.minutes +  'm ' +  fineApp.seconds + "s" + ' with @shangniwho_\'s 🍑 Juicy Jostle! Think you can get Juicy faster? 💪 bit.ly/2AHKG5O"',
+                target: '_blank'
+            }).addClass('').text('tweet your score!');
+
             fineApp.winnerModalOpen();
             console.log("you won!");
         }
@@ -549,7 +557,9 @@ fineApp.startTimer = () => {
 // fineApp.winModalOpen();
 // opens winner modal upon win
 fineApp.winnerModalOpen = () => {
-    const finalTime = fineApp.time.innerHTML;
+    const finalTime = fineApp.time.textContent;
+    fineApp.finalTimes.innerHTML = finalTime;
+    clearInterval(fineApp.interval);
     setTimeout(function () {
         fineApp.winModal[0].classList.add("show");
     }, 600);
@@ -601,13 +611,17 @@ fineApp.init = () => {
 
 $(function() {
     console.log("ready");
+    fineApp.init();
     $('.juicy-button').on('mouseover', function () {
         squish.play();
     })
-    fineApp.init();
     $('.fa-sync-alt').on('mousedown', function() {
         squish.play();
     })
+    $('.tweet-line').on('mouseover', function () {
+        tweeter.play();
+    });
+
     $('.fa-question').on('click', function(e) {
         fineApp.questionModal.addClass('show');
     });

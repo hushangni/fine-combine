@@ -24,6 +24,7 @@
     <audio src="assets/thin-ding.wav" id="thinDing"></audio>
     <audio src="assets/medium-ding.wav" id="medDing"></audio>
     <audio src="assets/thud.aiff" id="thud"></audio>
+    <audio src="assets/twitter.mp3" id="tweeter"></audio>
 
     <!-- game container starts here -->
     <div class="full-game-container">
@@ -33,6 +34,13 @@
         <div class="winner-modal modal game-modal">
             <i class="fas fa-times"></i>
             <h2>Winner!</h2>
+            <p>You took:
+                <span id="finalTime">0s</span>
+            </p>
+            <p class="tweet-line">
+                <i class="fab fa-twitter"></i>
+                <a id="tweet"></a>
+            </p>
             <a href="./game.html" class="juicy-button juice-again-button">juice again</a>
         </div>
 
@@ -42,7 +50,6 @@
             <h2>Game Over!</h2>
             <a href="./game.html" class="juicy-button juice-again-button">juice again</a>
         </div>
-
             <div class="game-container">
                 <div class="logo-container game-logo-container">
                     <img src="assets/juicy-text.png" alt="juicy red swirl font with word juicy" class="juicy-font juicy-game-text">

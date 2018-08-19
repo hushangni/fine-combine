@@ -69,7 +69,7 @@ body {
 
 .game-modal {
   width: 400px;
-  height: 300px;
+  height: 320px;
 }
 
 .modal:before {
@@ -110,6 +110,40 @@ body {
 
   }
 }
+
+.winner-modal {
+  .tweet-line {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+    .fa-twitter {
+      margin-right: 15px;
+    }
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin: 8px;
+  }
+
+
+  .tweet-line:hover .fa-twitter{
+    animation: wiggle 2s infinite;
+  }
+
+  #tweet,
+  .fa-twitter {
+    color: $twitterBlue;
+    text-decoration: none;
+    -webkit-text-stroke: 0.5px white;
+    text-shadow: -2px 2px 0px white;
+  }
+}
+
+
 
 
 
@@ -204,10 +238,15 @@ i.index-icon:hover {
   z-index: 112;
   padding: 0;
   color: white;
-  right: 80px;
-  top: 40px;
+  right: 30px;
+  top: 24px;
   @include fontSize(26);
   cursor: pointer;
+}
+
+.index-times {
+  right: 80px;
+  top: 40px;
 }
 
 .fa-times:hover {
@@ -240,11 +279,9 @@ img.juicy-game-text {
   margin: 0 auto;
 }
 
-
-
 .full-game-container {
   height: 100%;
-  margin: 30px auto 0;
+  margin: 0 auto 0;
   display: flex;
   position: relative;
   align-items: center;
