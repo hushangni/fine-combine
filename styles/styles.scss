@@ -254,7 +254,6 @@ i.index-icon:hover {
   animation: spin 3s infinite;
 }
 
-
 // LOGO////////////////
 .logo-container {
   margin-top: 8%;
@@ -264,7 +263,7 @@ i.index-icon:hover {
 div.game-logo-container {
   position: absolute;
   left: -25%;
-  top: -20%;
+  top: -28%;
   z-index: 4;
   transform: rotate(-25deg);
 }
@@ -303,6 +302,8 @@ img.juicy-game-text {
   top: 42%;
   left: 50%;
   @include fontSize(40);
+  transition: all 2s ease;
+  animation: shake 3s ease infinite;
 }
 
 .game-jostle {
@@ -312,17 +313,22 @@ img.juicy-game-text {
   -webkit-text-stroke: 0.5px $outlineRed;
 }
 
+.time-container {
+  position: relative;
+  width: 500px;
+  margin: 0 auto;
+  height: 36px;
+}
+
 .time {
   @include fontSize(18);
   position: absolute;
-  top: -112px;
-  right: 1px;
+  right: 0;
   text-shadow: none;
   color: white;
   letter-spacing: 0.1rem;
   text-align: right;
   border-radius: 5px;
-  margin-top: 50px;
 
   -webkit-text-stroke: 0.7px $outlineRed;
   text-shadow: -2px 2px 0px $txtShadowPink;

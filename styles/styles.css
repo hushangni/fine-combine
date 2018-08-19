@@ -390,6 +390,54 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); } }
 
+@-webkit-keyframes slid-in {
+  0% {
+    left: 1000px; }
+  80% {
+    left: 1000px; }
+  90% {
+    left: -5px; }
+  100% {
+    left: 0px; } }
+
+@keyframes slid-in {
+  0% {
+    left: 1000px; }
+  80% {
+    left: 1000px; }
+  90% {
+    left: -5px; }
+  100% {
+    left: 0px; } }
+
+@-webkit-keyframes shake {
+  10%, 50% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+    transform: translate3d(-1px, 0, 0); }
+  15%, 45% {
+    -webkit-transform: translate3d(2px, 0, 0);
+    transform: translate3d(2px, 0, 0); }
+  20%, 30%, 40% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-4px, 0, 0); }
+  25%, 35% {
+    -webkit-transform: translate3d(4px, 0, 0);
+    transform: translate3d(4px, 0, 0); } }
+
+@keyframes shake {
+  10%, 50% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+    transform: translate3d(-1px, 0, 0); }
+  15%, 45% {
+    -webkit-transform: translate3d(2px, 0, 0);
+    transform: translate3d(2px, 0, 0); }
+  20%, 30%, 40% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-4px, 0, 0); }
+  25%, 35% {
+    -webkit-transform: translate3d(4px, 0, 0);
+    transform: translate3d(4px, 0, 0); } }
+
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block; }
 
@@ -766,7 +814,7 @@ i.index-icon:hover {
 div.game-logo-container {
   position: absolute;
   left: -25%;
-  top: -20%;
+  top: -28%;
   z-index: 4;
   -webkit-transform: rotate(-25deg);
   -ms-transform: rotate(-25deg);
@@ -811,7 +859,12 @@ img.juicy-game-text {
   top: 42%;
   left: 50%;
   font-size: 40px;
-  font-size: 4rem; }
+  font-size: 4rem;
+  -webkit-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  transition: all 2s ease;
+  -webkit-animation: shake 3s ease infinite;
+  animation: shake 3s ease infinite; }
 
 .game-jostle {
   top: 50%;
@@ -820,18 +873,22 @@ img.juicy-game-text {
   font-size: 2.3rem;
   -webkit-text-stroke: 0.5px #D04746; }
 
+.time-container {
+  position: relative;
+  width: 500px;
+  margin: 0 auto;
+  height: 36px; }
+
 .time {
   font-size: 18px;
   font-size: 1.8rem;
   position: absolute;
-  top: -112px;
-  right: 1px;
+  right: 0;
   text-shadow: none;
   color: white;
   letter-spacing: 0.1rem;
   text-align: right;
   border-radius: 5px;
-  margin-top: 50px;
   -webkit-text-stroke: 0.7px #D04746;
   text-shadow: -2px 2px 0px #E28D8E; }
 

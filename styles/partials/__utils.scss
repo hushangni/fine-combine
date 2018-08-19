@@ -168,3 +168,28 @@ $twitterBlue: #55ACEE;
   75% {transform: rotate(-5deg);}
   100% {transform: rotate(0deg);}
 }
+
+@keyframes slid-in{
+0%   {left:1000px;}
+80%   {left:1000px;}
+90%  {left:-5px;}
+100%  {left:0px}
+}
+
+@keyframes shake {
+  10%, 50% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  15%, 45% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  20%, 30%, 40% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  25%, 35% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

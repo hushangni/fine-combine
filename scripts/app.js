@@ -5,7 +5,7 @@ fineApp.gridSize = 4;
 fineApp.score = 0;
 fineApp.gameOver = false;
 fineApp.gameWon = false;
-fineApp.winTile = 8;
+fineApp.winTile = 256;
 fineApp.seconds = 0;
 fineApp.minutes = 0;
 fineApp.finalTimes = $('#finalTime')[0];
@@ -578,6 +578,8 @@ fineApp.restart = () => {
     fineApp.minutes = 0;
     fineApp.time.innerHTML = fineApp.minutes + "m " + fineApp.seconds + "s";
     clearInterval(fineApp.interval);
+    fineApp.gameWon = false;
+    fineApp.gameOver = false;
     fineApp.startTimer();
     fineApp.grid.buildGrid();
     fineApp.grid.addStartTiles();
@@ -602,6 +604,34 @@ fineApp.init = () => {
     fineApp.keyListen.listen();
     fineApp.updateBoard();
     fineApp.startTimer();
+    $('.juicy-button').on('mouseover', function () {
+        squish.play();
+    })
+    $('.fa-sync-alt').on('mousedown', function () {
+        squish.play();
+    })
+    $('.tweet-line').on('mouseover', function () {
+        tweeter.play();
+    });
+
+    $('.fa-question').on('click', function (e) {
+        fineApp.questionModal.addClass('show');
+    });
+
+    $('.fa-heart').on('click', function (e) {
+        fineApp.heartModal.addClass('show');
+    });
+
+    $('.fa-sync-alt').on('click', fineApp.restart);
+
+    $('.index-times').on('click', function () {
+        fineApp.questionModal[0].classList.remove('show');
+        fineApp.heartModal[0].classList.remove('show');
+    })
+
+    $('.fa-times').on('click', function () {
+        fineApp.winModal[0].classList.remove('show');
+    });
     fineApp.keyListen.on("move", fineApp.grid.move.bind(this));
 
 
@@ -612,32 +642,32 @@ fineApp.init = () => {
 $(function() {
     console.log("ready");
     fineApp.init();
-    $('.juicy-button').on('mouseover', function () {
-        squish.play();
-    })
-    $('.fa-sync-alt').on('mousedown', function() {
-        squish.play();
-    })
-    $('.tweet-line').on('mouseover', function () {
-        tweeter.play();
-    });
+    // $('.juicy-button').on('mouseover', function () {
+    //     squish.play();
+    // })
+    // $('.fa-sync-alt').on('mousedown', function() {
+    //     squish.play();
+    // })
+    // $('.tweet-line').on('mouseover', function () {
+    //     tweeter.play();
+    // });
 
-    $('.fa-question').on('click', function(e) {
-        fineApp.questionModal.addClass('show');
-    });
+    // $('.fa-question').on('click', function(e) {
+    //     fineApp.questionModal.addClass('show');
+    // });
 
-    $('.fa-heart').on('click', function(e) {
-        fineApp.heartModal.addClass('show');
-    });
+    // $('.fa-heart').on('click', function(e) {
+    //     fineApp.heartModal.addClass('show');
+    // });
 
-    $('.fa-sync-alt').on('click', fineApp.restart);
+    // $('.fa-sync-alt').on('click', fineApp.restart);
 
-    $('.index-times').on('click', function() {
-        fineApp.questionModal[0].classList.remove('show');
-        fineApp.heartModal[0].classList.remove('show');
-    })
+    // $('.index-times').on('click', function() {
+    //     fineApp.questionModal[0].classList.remove('show');
+    //     fineApp.heartModal[0].classList.remove('show');
+    // })
 
-    $('.fa-times').on('click', function () {
-        fineApp.winModal[0].classList.remove('show');
-    });
+    // $('.fa-times').on('click', function () {
+    //     fineApp.winModal[0].classList.remove('show');
+    // });
 })
