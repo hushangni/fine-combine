@@ -610,7 +610,7 @@ body {
   height: 100%; }
 
 .modal {
-  background: #fddc95;
+  background: #fbb8a6;
   position: fixed;
   z-index: 50;
   border-radius: 5px;
@@ -619,7 +619,9 @@ body {
   display: none;
   -webkit-transition: all 1s ease-out;
   -o-transition: all 1s ease-out;
-  transition: all 1s ease-out; }
+  transition: all 1s ease-out;
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
 
 .show {
   display: block; }
@@ -655,10 +657,6 @@ body {
     -webkit-animation: shine 10s infinite forwards;
     animation: shine 10s infinite forwards; }
 
-.game-modal {
-  width: 400px;
-  height: 320px; }
-
 .question-modal {
   text-align: center;
   text-shadow: -2px 2px 0px #E28D8E; }
@@ -679,6 +677,23 @@ body {
       font-size: 3rem; }
     .question-modal .how-to-fruits img {
       width: 120px; }
+
+.game-modal {
+  width: 400px;
+  height: 320px; }
+  .game-modal h2 {
+    font-size: 22px;
+    font-size: 2.2rem; }
+  .game-modal p i {
+    font-size: 24px;
+    font-size: 2.4rem; }
+  .game-modal.question-modal .how-to-fruits {
+    width: 330px; }
+    .game-modal.question-modal .how-to-fruits img {
+      width: 80px; }
+    .game-modal.question-modal .how-to-fruits i {
+      font-size: 24px;
+      font-size: 2.4rem; }
 
 .winner-modal .tweet-line {
   display: -webkit-box;
@@ -1184,4 +1199,62 @@ img.juicy-game-text {
     text-align: right;
     border-radius: 5px;
     -webkit-text-stroke: 0.7px #D04746;
-    text-shadow: -2px 2px 0px #E28D8E; } }
+    text-shadow: -2px 2px 0px #E28D8E; }
+  .game-modal {
+    width: 230px;
+    height: 260px; }
+  .index-modal h2 {
+    font-size: 20px;
+    font-size: 2rem; }
+  .index-modal h3 {
+    font-size: 16px;
+    font-size: 1.6rem;
+    margin: 0;
+    margin-bottom: 10px; }
+  .index-modal p {
+    width: 280px;
+    margin: 0 auto;
+    font-size: 12px;
+    font-size: 1.2rem; }
+    .index-modal p i {
+      font-size: 20px;
+      font-size: 2rem; }
+  .question-modal .how-to-fruits {
+    margin: 25px auto;
+    width: 300px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .question-modal .how-to-fruits i {
+      font-size: 20px;
+      font-size: 2rem; }
+    .question-modal .how-to-fruits img {
+      width: 60px; }
+  .logo-container {
+    margin-top: 80px; }
+    .logo-container .juicy-font {
+      width: 300px; }
+    .logo-container .index-jostle {
+      font-size: 22px;
+      font-size: 2.2rem; }
+  .index-icon {
+    font-size: 20px;
+    font-size: 2rem;
+    position: absolute;
+    top: 120px; }
+    .index-icon.fa-question {
+      left: 40px; }
+    .index-icon.fa-heart {
+      right: 40px; }
+  .juicy-button {
+    font-size: 12px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    background: white;
+    padding: 20px; } }

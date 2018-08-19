@@ -630,8 +630,11 @@ fineApp.init = () => {
         fineApp.heartModal[0].classList.remove('show');
     })
 
+
     $('.fa-times').on('click', function () {
         fineApp.winModal[0].classList.remove('show');
+        fineApp.questionModal[0].classList.remove('show');
+        fineApp.heartModal[0].classList.remove('show');
     });
     fineApp.keyListen.on("move", fineApp.grid.move.bind(this));
 

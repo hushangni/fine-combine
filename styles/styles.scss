@@ -39,12 +39,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   height: 100%;
 }
 
 // MODALS/////////////////////
 .modal {
-  background: $peach;
+  background: $pinkPeach;
   position: fixed;
   z-index: 50;
   border-radius: 5px;
@@ -52,6 +53,7 @@ body {
   overflow: hidden;
   display: none;
   transition: all 1s ease-out;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 .show {
@@ -86,11 +88,6 @@ body {
   }
 }
 
-.game-modal {
-  width: 400px;
-  height: 320px;
-}
-
 .question-modal {
   text-align: center;
   text-shadow: -2px 2px 0px $txtShadowPink;
@@ -111,6 +108,37 @@ body {
 
   }
 }
+
+
+.game-modal {
+  width: 400px;
+  height: 320px;
+
+  h2 {
+    @include fontSize(22);
+  }
+
+  p {
+    i {
+      @include fontSize(24);
+    }
+  }
+
+  &.question-modal {
+    .how-to-fruits {
+      width: 330px;
+
+      img {
+        width: 80px;
+      }
+
+      i {
+        @include fontSize(24);
+      }
+    }
+  }
+}
+
 
 .winner-modal {
   .tweet-line {
@@ -276,6 +304,7 @@ i.index-icon:hover {
     color: $outlineRed;
     cursor: pointer;
   }
+
 }
 
 .index-times {
@@ -464,6 +493,7 @@ $tile-size: 113.75px;
 
 // media width: 705
 @media only screen and (max-width: 705px) {
+  // game styles
   div.game-logo-container {
     display: none;
   }
@@ -481,6 +511,7 @@ $tile-size: 113.75px;
 }
 
 @media only screen and (max-width: 500px) {
+  // game styles
   .game-container {
     width: 300px;
     height: 300px;
@@ -538,5 +569,85 @@ $tile-size: 113.75px;
     -webkit-text-stroke: 0.7px $outlineRed;
     text-shadow: -2px 2px 0px $txtShadowPink;
   }
+
+  .game-modal {
+    width: 230px;
+    height: 260px;
+  }
+
+  // index styles
+  .index-modal {
+    h2 {
+      @include fontSize(20);
+    }
+
+    h3 {
+      @include fontSize(16);
+      margin: 0;
+      margin-bottom: 10px;
+    }
+    p {
+      width: 280px;
+      margin: 0 auto;
+      @include fontSize(12);
+
+      i {
+        @include fontSize(20);
+      }
+    }
+  }
+
+  .question-modal {
+
+    .how-to-fruits {
+      margin: 25px auto;
+      width: 300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      i {
+        @include fontSize(20);
+      }
+
+      img {
+        width: 60px;
+      }
+
+    }
+  }
+
+  .logo-container {
+    margin-top: 80px;
+    .juicy-font {
+      width: 300px;
+    }
+
+    .index-jostle {
+      @include fontSize(22);
+    }
+  }
+  .index-icon {
+    @include fontSize(20);
+    position: absolute;
+    top: 120px;
+
+    &.fa-question {
+      left: 40px;
+    }
+
+    &.fa-heart {
+      right: 40px;
+    }
+  }
+
+  .juicy-button {
+    @include fontSize(12);
+    text-decoration: none;
+    background: white;
+    padding: 20px;
+  }
+
+
+
 }
 // media height: 655
