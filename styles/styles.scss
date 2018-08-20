@@ -88,6 +88,33 @@ body {
   }
 }
 
+.heart-modal.index-modal {
+
+  .credits {
+    text-align: left;
+    margin-top: 30px;
+
+    .credit-name {
+      color: white;
+      text-shadow: -4px 4px 0px $txtShadowPink;
+      -webkit-text-stroke: 1px $outlineRed;
+    }
+
+    p {
+      margin-top: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    a:hover {
+      color: $peach;
+    }
+  }
+}
+
 .question-modal {
   text-align: center;
   text-shadow: -2px 2px 0px $txtShadowPink;
@@ -518,6 +545,7 @@ $tile-size: 113.75px;
   color: $pinkPeach;
   text-decoration: none;
   @include fontSize(16);
+  -webkit-text-stroke: 1px $outlineRed;
   transition: all 0.6s ease-out;
 }
 

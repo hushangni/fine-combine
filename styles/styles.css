@@ -657,6 +657,21 @@ body {
     -webkit-animation: shine 10s infinite forwards;
     animation: shine 10s infinite forwards; }
 
+.heart-modal.index-modal .credits {
+  text-align: left;
+  margin-top: 30px; }
+  .heart-modal.index-modal .credits .credit-name {
+    color: white;
+    text-shadow: -4px 4px 0px #E28D8E;
+    -webkit-text-stroke: 1px #D04746; }
+  .heart-modal.index-modal .credits p {
+    margin-top: 20px; }
+  .heart-modal.index-modal .credits a {
+    text-decoration: none;
+    color: white; }
+  .heart-modal.index-modal .credits a:hover {
+    color: #fddc95; }
+
 .question-modal {
   text-align: center;
   text-shadow: -2px 2px 0px #E28D8E; }
@@ -1107,6 +1122,7 @@ img.juicy-game-text {
   text-decoration: none;
   font-size: 16px;
   font-size: 1.6rem;
+  -webkit-text-stroke: 1px #D04746;
   -webkit-transition: all 0.6s ease-out;
   -o-transition: all 0.6s ease-out;
   transition: all 0.6s ease-out; }
