@@ -623,4 +623,16 @@ $(function() {
     console.log("ready");
     fineApp.init();
 
+    const pressed = [];
+    const secretCode = 'winner';
+    window.addEventListener('keyup', (e) => {
+        pressed.push(e.key);
+        pressed.splice(-secretCode.length - 1, pressed.length - secretCode);
+        console.log(pressed);
+        if (pressed.join('').includes(secretCode)) {
+            console.log('DING DING!');
+            fineApp.gameWon = true;
+        }
+    });
+
 })
