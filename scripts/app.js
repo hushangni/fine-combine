@@ -23,6 +23,17 @@ fineApp.tileContainer = $('.tile-container')[0];
 fineApp.scoreContainer = $('#score')[0];
 fineApp.message = $('.message')[0];
 
+const hackerImages = [
+    '<img src="assets/suzette-mccanny.jpg" alt="Suzette">',
+    '<img src="assets/adam-mcmillan.jpg" alt="Adam">',
+    '<img src="assets/asaf-gerchak.jpg" alt="Asaf">',
+    '<img src="assets/melissa-carter.jpg" alt="Melissa">',
+    '<img src="assets/zoe-daniels.jpg" alt="Zoe">',
+    '<img src="assets/ryan-christiani.jpg" alt="Ryan">',
+    '<img src="assets/kristen-spencer.jpg" alt="Kristen">',
+    '<img src="assets/heather-payne.png" alt="Heather" class="win-image">'
+];
+
 const fruitImages = [
     '<img src="assets/kiwi.png" alt="kiwi">',
     '<img src="assets/papaya.png" alt="papaya">',
@@ -624,7 +635,7 @@ $(function() {
     fineApp.init();
 
     // winner cheat code
-    const pressed = [];
+    let pressed = [];
     const secretCode = 'winner';
     window.addEventListener('keyup', (e) => {
         pressed.push(e.key);
@@ -633,6 +644,19 @@ $(function() {
         if (pressed.join('').includes(secretCode)) {
             console.log('DING DING!');
             fineApp.gameWon = true;
+        }
+    });
+
+    // hackeryou cheat code
+    let pressed1 = [];
+    const secretCode1 = 'hackeryou';
+    window.addEventListener('keyup', (e) => {
+        pressed1.push(e.key);
+        pressed1.splice(-secretCode1.length - 1, pressed.length - secretCode1);
+        console.log(pressed1);
+        if (pressed1.join('').includes(secretCode1)) {
+            console.log('DING DING!');
+            fineApp.tileImgs = hackerImages;
         }
     });
 
