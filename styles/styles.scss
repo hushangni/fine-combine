@@ -39,8 +39,32 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   height: 100%;
+}
+
+.corner-ribbon{
+  width: 300px;
+  background: black;
+  position: absolute;
+  @include fontSize(12);
+  top: 50px;
+  left: -65px;
+  text-align: center;
+  line-height: 50px;
+  padding: 0;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  text-shadow: none;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -webkit-text-stroke: 0.5px #333;
+
+  i {
+    text-shadow: none;
+    margin-top: 8px;
+    color: #333;
+    -webkit-text-stroke: 0.5px white;
+  }
 }
 
 // MODALS/////////////////////
@@ -707,6 +731,9 @@ $tile-size: 113.75px;
   }
 
   // index styles
+  .corner-ribbon {
+    display: none;
+  }
   .index-modal {
     h2 {
       @include fontSize(20);

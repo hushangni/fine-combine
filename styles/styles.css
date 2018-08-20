@@ -609,6 +609,30 @@ body {
   align-items: center;
   height: 100%; }
 
+.corner-ribbon {
+  width: 300px;
+  background: black;
+  position: absolute;
+  font-size: 12px;
+  font-size: 1.2rem;
+  top: 50px;
+  left: -65px;
+  text-align: center;
+  line-height: 50px;
+  padding: 0;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  text-shadow: none;
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -webkit-text-stroke: 0.5px #333; }
+  .corner-ribbon i {
+    text-shadow: none;
+    margin-top: 8px;
+    color: #333;
+    -webkit-text-stroke: 0.5px white; }
+
 .modal {
   background: #fbb8a6;
   position: fixed;
@@ -1293,6 +1317,8 @@ img.juicy-game-text {
   .more-to-love {
     display: none; }
   .fa-hand-point-left {
+    display: none; }
+  .corner-ribbon {
     display: none; }
   .index-modal h2 {
     font-size: 20px;
