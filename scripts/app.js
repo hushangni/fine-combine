@@ -24,14 +24,14 @@ fineApp.scoreContainer = $('#score')[0];
 fineApp.message = $('.message')[0];
 
 const fruitImages = [
-    '<img src="assets/kiwi.png" alt="">',
-    '<img src="assets/papaya.png" alt="">',
-    '<img src="assets/coconut.png" alt="">',
-    '<img src="assets/dragonfruit.png" alt="">',
-    '<img src="assets/lemon.png" alt="">',
-    '<img src="assets/pomegranate.png" alt="">',
-    '<img src="assets/watermelon.png" alt="">',
-    '<img src="assets/fruitbowl.png" alt="" class="win-image">'
+    '<img src="assets/kiwi.png" alt="kiwi">',
+    '<img src="assets/papaya.png" alt="papaya">',
+    '<img src="assets/coconut.png" alt="coconut">',
+    '<img src="assets/dragonfruit.png" alt="dragon fruit">',
+    '<img src="assets/lemon.png" alt="lemon">',
+    '<img src="assets/pomegranate.png" alt="pomegranate">',
+    '<img src="assets/watermelon.png" alt="watermelon">',
+    '<img src="assets/fruitbowl.png" alt="fruit salad" class="win-image">'
 ];
 fineApp.tileImgs = fruitImages;
 
@@ -623,6 +623,7 @@ $(function() {
     console.log("ready");
     fineApp.init();
 
+    // winner cheat code
     const pressed = [];
     const secretCode = 'winner';
     window.addEventListener('keyup', (e) => {
