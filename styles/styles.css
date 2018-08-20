@@ -620,8 +620,8 @@ body {
   -webkit-transition: all 1s ease-out;
   -o-transition: all 1s ease-out;
   transition: all 1s ease-out;
-  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
+  -webkit-box-shadow: 0 0px 38px #fbb8a6, 0 0px 12px #fbb8a6;
+  box-shadow: 0 0px 38px #fbb8a6, 0 0px 12px #fbb8a6; }
 
 .show {
   display: block; }
@@ -680,7 +680,8 @@ body {
 
 .game-modal {
   width: 400px;
-  height: 320px; }
+  height: 320px;
+  background-color: #fddc95; }
   .game-modal h2 {
     font-size: 22px;
     font-size: 2.2rem; }
@@ -695,41 +696,43 @@ body {
       font-size: 24px;
       font-size: 2.4rem; }
 
-.winner-modal .tweet-line {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-bottom: 0px; }
-  .winner-modal .tweet-line .fa-twitter {
-    margin-right: 15px; }
+.winner-modal {
+  background-color: #fbb8a6; }
+  .winner-modal .tweet-line {
+    padding-top: 10px;
+    padding-bottom: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-bottom: 0px; }
+    .winner-modal .tweet-line .fa-twitter {
+      margin-right: 15px; }
+  .winner-modal h2 {
+    margin-bottom: 20px; }
+  .winner-modal p {
+    margin: 8px; }
+  .winner-modal .tweet-line:hover .fa-twitter {
+    -webkit-animation: wiggle 1s infinite;
+    animation: wiggle 1s infinite; }
+  .winner-modal .tweet-line:hover #tweet {
+    -webkit-transform: scale(1.05, 1.05);
+    -ms-transform: scale(1.05, 1.05);
+    transform: scale(1.05, 1.05); }
+  .winner-modal #tweet,
+  .winner-modal .fa-twitter {
+    color: #55ACEE;
+    text-decoration: none;
+    -webkit-text-stroke: 0.5px white;
+    text-shadow: -2px 2px 0px white;
+    -webkit-transition: 0.2s ease-in-out all;
+    -o-transition: 0.2s ease-in-out all;
+    transition: 0.2s ease-in-out all; }
 
-.winner-modal h2 {
-  margin-bottom: 20px; }
-
-.winner-modal p {
-  margin: 8px; }
-
-.winner-modal .tweet-line:hover .fa-twitter {
-  -webkit-animation: wiggle 1s infinite;
-  animation: wiggle 1s infinite; }
-
-.winner-modal .tweet-line:hover #tweet {
-  -webkit-transform: scale(1.05, 1.05);
-  -ms-transform: scale(1.05, 1.05);
-  transform: scale(1.05, 1.05); }
-
-.winner-modal #tweet,
-.winner-modal .fa-twitter {
-  color: #55ACEE;
-  text-decoration: none;
-  -webkit-text-stroke: 0.5px white;
-  text-shadow: -2px 2px 0px white;
-  -webkit-transition: 0.2s ease-in-out all;
-  -o-transition: 0.2s ease-in-out all;
-  transition: 0.2s ease-in-out all; }
+.game-over-modal {
+  background: #ccc; }
 
 i {
   color: white;
@@ -855,6 +858,19 @@ i.index-icon:hover {
 .index-times {
   right: 80px;
   top: 40px; }
+
+.fa-hand-point-left {
+  position: absolute;
+  top: -8px;
+  font-size: 24px;
+  font-size: 2.4rem;
+  left: 180px;
+  cursor: pointer;
+  z-index: 2; }
+  .fa-hand-point-left:hover {
+    -webkit-animation: shake 1s ease infinite;
+    animation: shake 1s ease infinite;
+    color: #D04746; }
 
 .logo-container {
   margin-top: 8%;
@@ -1086,6 +1102,49 @@ img.juicy-game-text {
   -webkit-animation: shine 10s infinite forwards;
   animation: shine 10s infinite forwards; }
 
+#name {
+  color: #fbb8a6;
+  text-decoration: none;
+  font-size: 16px;
+  font-size: 1.6rem;
+  -webkit-transition: all 0.6s ease-out;
+  -o-transition: all 0.6s ease-out;
+  transition: all 0.6s ease-out; }
+
+.social-icons {
+  list-style: none;
+  margin: 50px auto 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 230px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0; }
+  .social-icons li:hover i {
+    -webkit-animation: wiggle 1s infinite;
+    animation: wiggle 1s infinite; }
+  .social-icons i {
+    font-size: 25px;
+    font-size: 2.5rem;
+    -webkit-text-stroke: 0.5px white;
+    text-shadow: -2px 2px 0px white;
+    -webkit-transition: 0.2s ease-in-out all;
+    -o-transition: 0.2s ease-in-out all;
+    transition: 0.2s ease-in-out all; }
+  .social-icons .fa-github {
+    color: #333; }
+  .social-icons .fa-twitter {
+    color: #55ACEE; }
+  .social-icons .fa-instagram {
+    color: #bc2a8d; }
+  .social-icons .fa-linkedin-in {
+    color: #0077b5; }
+
 @media only screen and (max-width: 705px) {
   div.game-logo-container {
     display: none; }
@@ -1200,9 +1259,25 @@ img.juicy-game-text {
     border-radius: 5px;
     -webkit-text-stroke: 0.7px #D04746;
     text-shadow: -2px 2px 0px #E28D8E; }
+  .use-keys {
+    margin-top: 40px; }
   .game-modal {
-    width: 230px;
-    height: 260px; }
+    width: 250px;
+    height: 300px; }
+    .game-modal.question-modal .how-to-fruits {
+      margin: 40px auto;
+      width: 230px; }
+      .game-modal.question-modal .how-to-fruits i {
+        font-size: 18px;
+        font-size: 1.8rem; }
+      .game-modal.question-modal .how-to-fruits img {
+        width: 50px; }
+  .game-over-modal p {
+    margin-bottom: 0; }
+  .more-to-love {
+    display: none; }
+  .fa-hand-point-left {
+    display: none; }
   .index-modal h2 {
     font-size: 20px;
     font-size: 2rem; }
@@ -1253,8 +1328,8 @@ img.juicy-game-text {
     .index-icon.fa-heart {
       right: 40px; }
   .juicy-button {
-    font-size: 12px;
-    font-size: 1.2rem;
+    font-size: 11px;
+    font-size: 1.1rem;
     text-decoration: none;
     background: white;
-    padding: 20px; } }
+    padding: 15px; } }

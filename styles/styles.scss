@@ -53,7 +53,7 @@ body {
   overflow: hidden;
   display: none;
   transition: all 1s ease-out;
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0 0px 38px $pinkPeach, 0 0px 12px $pinkPeach;
 }
 
 .show {
@@ -113,6 +113,7 @@ body {
 .game-modal {
   width: 400px;
   height: 320px;
+  background-color:  $peach;
 
   h2 {
     @include fontSize(22);
@@ -141,10 +142,15 @@ body {
 
 
 .winner-modal {
+  background-color: $pinkPeach;
+
   .tweet-line {
+    padding-top: 10px;
+    padding-bottom: 0;
     display: flex;
     justify-content: center;
     margin-bottom: 0px;
+
     .fa-twitter {
       margin-right: 15px;
     }
@@ -178,6 +184,9 @@ body {
 
 }
 
+.game-over-modal {
+  background: #ccc;
+}
 
 // ICONS ///////////
 i {
@@ -310,6 +319,21 @@ i.index-icon:hover {
 .index-times {
   right: 80px;
   top: 40px;
+}
+
+
+.fa-hand-point-left {
+  position: absolute;
+  top: -8px;
+  @include fontSize(24);
+  left: 180px;
+  cursor: pointer;
+  z-index: 2;
+
+  &:hover {
+    animation: shake 1s ease infinite;
+    color: $outlineRed;
+  }
 }
 
 // LOGO ////////////////
@@ -489,6 +513,50 @@ $tile-size: 113.75px;
     animation: shine 10s infinite forwards;
 }
 
+// social icons
+#name {
+  color: $pinkPeach;
+  text-decoration: none;
+  @include fontSize(16);
+  transition: all 0.6s ease-out;
+}
+
+.social-icons {
+  list-style: none;
+  margin: 50px auto 0;
+  display: flex;
+  width: 230px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+
+  li:hover i {
+    animation: wiggle 1s infinite;
+  }
+
+  i {
+    @include fontSize(25);
+    -webkit-text-stroke: 0.5px white;
+    text-shadow: -2px 2px 0px white;
+    transition: 0.2s ease-in-out all;
+  }
+
+  .fa-github {
+    color:#333;
+  }
+
+  .fa-twitter {
+    color: $twitterBlue;
+  }
+
+  .fa-instagram {
+    color: #bc2a8d;
+  }
+
+  .fa-linkedin-in {
+    color: #0077b5;
+  }
+}
 
 
 // media width: 705
@@ -520,9 +588,9 @@ $tile-size: 113.75px;
   }
 
   .grid-container {
-      grid-gap: 10px;
-      height: 300px;
-      width: 300px;
+    grid-gap: 10px;
+    height: 300px;
+    width: 300px;
   }
 
   $tile-size: 67.5px;
@@ -557,8 +625,9 @@ $tile-size: 113.75px;
   .time-container {
     width: 300px;
   }
+
   .time {
-  @include fontSize(18);
+    @include fontSize(18);
     right: 0;
     top: -6px;
     text-shadow: none;
@@ -570,9 +639,43 @@ $tile-size: 113.75px;
     text-shadow: -2px 2px 0px $txtShadowPink;
   }
 
+  .use-keys {
+    margin-top: 40px;
+  }
+
   .game-modal {
-    width: 230px;
-    height: 260px;
+    width: 250px;
+    height: 300px;
+
+    &.question-modal {
+
+      .how-to-fruits {
+        margin: 40px auto;
+        width: 230px;
+
+        i {
+          @include fontSize(18)
+        }
+
+        img {
+          width: 50px;
+        }
+      }
+    }
+  }
+
+  .game-over-modal {
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  .more-to-love {
+    display: none;
+  }
+
+  .fa-hand-point-left {
+    display: none;
   }
 
   // index styles
@@ -626,6 +729,7 @@ $tile-size: 113.75px;
       @include fontSize(22);
     }
   }
+
   .index-icon {
     @include fontSize(20);
     position: absolute;
@@ -641,13 +745,11 @@ $tile-size: 113.75px;
   }
 
   .juicy-button {
-    @include fontSize(12);
+    @include fontSize(11);
     text-decoration: none;
     background: white;
-    padding: 20px;
+    padding: 15px;
   }
-
-
 
 }
 // media height: 655

@@ -5,22 +5,20 @@ fineApp.gridSize = 4;
 fineApp.score = 0;
 fineApp.gameOver = false;
 fineApp.gameWon = false;
-fineApp.winTile = 8;
+fineApp.winTile = 256;
 fineApp.seconds = 0;
 fineApp.minutes = 0;
 fineApp.finalTimes = $('#finalTime')[0];
 fineApp.interval;
 fineApp.time = $('#time')[0];
+
+// fine app modals
 fineApp.winModal = $('.winner-modal');
+fineApp.gameOverModal = $('.game-over-modal');
 fineApp.questionModal = $('.question-modal');
 fineApp.heartModal = $('.heart-modal');
-fineApp.mobileSwipes = [Hammer.DIRECTION_UP, Hammer.DIRECTION_RIGHT, Hammer.DIRECTION_LEFT];
-fineApp.gameContainer = $('.game-container')[0];
-fineApp.hammer = Hammer(fineApp.gameContainer, {
-    drag_block_horizonal: true,
-    drag_block_vertical: true
-})
 
+// fine app containers
 fineApp.tileContainer = $('.tile-container')[0];
 fineApp.scoreContainer = $('#score')[0];
 fineApp.message = $('.message')[0];
@@ -35,45 +33,25 @@ const fruitImages = [
     '<img src="assets/watermelon.png" alt="">',
     '<img src="assets/fruitbowl.png" alt="" class="win-image">'
 ];
+fineApp.tileImgs = fruitImages;
 
-const fruitFacts = [
-    'A strawberry is not a berry, but a banana is.',
-    'Apples, peaches and raspberries are all members of the rose family.',
-    "The world's most popular fruit is the tomato.",
-    "Coffee beans aren't beans, they're fruit pits.",
-    "Square watermelons are grown by japanese farmers for easier stack and store.",
-    "The color Orange was named after the fruit, but before that, the color was called geoluread (yellow-red).",
-    "Pomology, is the study of fruits.",
-    "There is a tree called Fruit Salad Tree, and it sprouts 3 - 7 different fruits.",
-    "Fruits don't die the moment they are harvested, they respond to the environemnt days after.",
-    "Tomatos have more genes than humans",
-    "We share 50% of our DNA with bananas",
-    "The pinapple is a berry.",
-    "After eating the 'miracle fruit', sour foods will taste sweet for 1-2 hours",
-    "Stickers found on fruits are edible!",
-    "Pineapples were so expensive in 1700s, people would rent a pineapple and parade it around as a demonstration of their wealth.",
-    "Durian, or known as the world's smelliest fruit, is so stinky it is not allowed on some buses and in some hotels.",
-    "Adding salt to pineapple causes it to taste sweeter, reducing the bitterness of the fruit.",
-    "Watermelons contain citrulline that can trigger production of a compound that helps relax the body's blood vessels, just like Viagra.",
-    "Kiwis use to be called melonettes"
-]
-
-const thinDing = $('#thinDing')[0];
+// sounds
+const thinDing = $('#thinDing')[0]; // win sound
 const pop = $('#pop')[0]; // doesn't work when it is hosted on github (on FireFox only);
 
-const tweeter = $('#tweeter')[0];
-const blop = $('#blop')[0];
-const squish = $('#squish')[0];
-const medDing = $('#medDing')[0];
-
-fineApp.tileImgs = fruitImages;
+const tweeter = $('#tweeter')[0]; // tweet sound
+const blop = $('#blop')[0]; // match sound
+const squish = $('#squish')[0]; // juice sound
+const thud = $('#thud')[0]; // lose sound
 
 /////////////// KEYBOARD INPUT HANDLER ///////////////
 class KeyboardInput {
+    // create keyboard input listener
     constructor() {
         this.events = {};
     }
 
+    // creating own events function
     on(event, callback) {
         if(!this.events[event]) {
             this.events[event] = [];
@@ -81,6 +59,7 @@ class KeyboardInput {
         this.events[event].push(callback);
     }
 
+    // creating ability to produce our own events
     produceEvent(event, info) {
         let callbacks = this.events[event];
 
@@ -91,6 +70,8 @@ class KeyboardInput {
         }
     }
 
+    // listen for key codes, and trigger move based on which
+    // key is pressed
     listen() {
         const keyCodes = {
             38: 0,// up
@@ -109,12 +90,6 @@ class KeyboardInput {
         });
 
     }
-
-    restart(e) {
-        e.preventDefault();
-        this.produceEvent("restart");
-    }
-
 }
 
 /////////////// TILE ///////////////
@@ -312,7 +287,6 @@ fineApp.grid = {
 
                         // the end tile
                         if (merged.value === fineApp.winTile) {
-                            fineApp.gameOver = true;
                             fineApp.gameWon = true;
                         }
                     } else {
@@ -338,12 +312,9 @@ fineApp.grid = {
     }
 };
 
-
-
-
-
-
 /////////////// TRAVELS AND COORDIANTES///////////////
+// fineApp.getCoordinates(direction)
+// returns the direction in x, y to move based on key press
 fineApp.getCoordinates = direction => {
     const coordinates = {
         0: {x: 0, y: -1},
@@ -358,6 +329,7 @@ fineApp.getCoordinates = direction => {
     return coordinates[direction];
 }
 
+// fineApp.travelRoutes(coordinates)
 // returns the route to take for moving tiles
 fineApp.travelRoutes = coordinates => {
     let routes = {
@@ -382,7 +354,8 @@ fineApp.travelRoutes = coordinates => {
     return routes;
 };
 
-// finds farthest position
+// fineApp.mostFar(cell, coordinate)
+// finds farthest position for tile to go to
 fineApp.mostFar = (cell, coordinate) => {
     let prev;
 
@@ -401,30 +374,28 @@ fineApp.mostFar = (cell, coordinate) => {
     };
 };
 
-// return movesAvailable
+// fineApp.movesAvailable()
+// returns all the moves available currently
 fineApp.movesAvailable = () => {
     return fineApp.grid.emptyCells();
 }
 
+// fineApp.samePositions(firstPos, secondPos)
 // returns if positoins are equal:
 fineApp.samePositions = (firstPos, secondPos) => {
     return firstPos.x === secondPos.x && firstPos.y === secondPos.y;
 }
 
+// fineApp.positionClass(position)
 // returns position class for the tile
 fineApp.positionClass = position => {
     return `tile-position-${position.x + 1}-${position.y + 1}`;
 };
 
-
-
-
-
-
-
 /////////////// UPDATING HTML FUNCTIONS ///////////////
 
-// add tile on to the HTML STUFF
+// fineApp.addTileToBoard(tile)
+// add the tile to the actual HTML game board
 fineApp.addTileToBoard = tile => {
     const item = $('<div></div>');
     const itemPosition = tile.prevPosition || {x: tile.x, y: tile.y};
@@ -432,9 +403,6 @@ fineApp.addTileToBoard = tile => {
 
     let classes = ['tile', `tile-${tile.value}`, positionClass];
     item.addClass(classes.join(" "));
-
-    // put in the proper image content we want for now its a number
-    // REPALCE IWTH COOL IMAGES LATER
 
     switch (tile.value) {
         case 2:
@@ -496,7 +464,8 @@ fineApp.addTileToBoard = tile => {
     fineApp.tileContainer.append(item[0]);
 };
 
-// update board
+// fineApp.updateBoard()
+// updates the current board and opens win/game over modals
 fineApp.updateBoard = () => {
     window.requestAnimationFrame(function() {
         // clear the fcking container so all the tiles that have been turned null dissapear
@@ -525,17 +494,15 @@ fineApp.updateBoard = () => {
 
         // update game over
         if (fineApp.gameOver) {
+            thud.play();
             fineApp.gameOverModalOpen();
             console.log("game over!");
         }
 
-        // update time?
-        // update over
-        // update win
     });
 };
 
-// fineApp.clearContainer();
+// fineApp.clearContainer(container);
 // clear out a HTML container
 fineApp.clearContainer = container => {
     while (container.firstChild) {
@@ -575,7 +542,10 @@ fineApp.winnerModalOpen = () => {
 // fineApp.gameOverModalOpen();
 // opens game over modal upon win
 fineApp.gameOverModalOpen = () => {
-
+    clearInterval(fineApp.interval);
+    setTimeout(function () {
+        fineApp.gameOverModal[0].classList.add("show");
+    }, 600);
 }
 
 // fineApp.restart();
@@ -592,9 +562,6 @@ fineApp.restart = () => {
     fineApp.grid.addStartTiles();
     fineApp.updateBoard();
 }
-
-
-
 
 // initialize
 fineApp.init = () => {
@@ -623,13 +590,6 @@ fineApp.init = () => {
         tweeter.play();
     });
 
-    fineApp.hammer.on("swipe", function(e) {
-        e.gesture.preventDefault();
-        let direct = mobileSwipes.indexOf(event.gesture.direction);
-        fineApp.produceEvent("move", direct);
-
-    })
-
     $('.fa-question').on('click', function (e) {
         fineApp.questionModal.addClass('show');
     });
@@ -648,16 +608,17 @@ fineApp.init = () => {
 
     $('.fa-times').on('click', function () {
         fineApp.winModal[0].classList.remove('show');
+        fineApp.gameOverModal[0].classList.remove('show');
         fineApp.questionModal[0].classList.remove('show');
         fineApp.heartModal[0].classList.remove('show');
     });
     fineApp.keyListen.on("move", fineApp.grid.move.bind(this));
 
-
     // add starting tiles to board
     console.log("start/reseting game");
 }
 
+// document.ready
 $(function() {
     console.log("ready");
     fineApp.init();
