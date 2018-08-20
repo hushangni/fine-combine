@@ -926,6 +926,9 @@ i.index-icon:hover {
     animation: shake 1s ease infinite;
     color: #D04746; }
 
+.mobile-keys {
+  display: none; }
+
 .logo-container {
   margin-top: 8%;
   position: relative; }
@@ -1335,6 +1338,18 @@ img.juicy-game-text {
     display: none; }
   .fa-hand-point-left {
     display: none; }
+  .mobile-keys {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 20px;
+    width: 300px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+    .mobile-keys i {
+      font-size: 45px;
+      font-size: 4.5rem; }
   .corner-ribbon {
     display: none; }
   .index-modal h2 {

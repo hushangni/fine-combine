@@ -398,6 +398,10 @@ i.index-icon:hover {
   }
 }
 
+.mobile-keys {
+  display: none;
+}
+
 // LOGO ////////////////
 .logo-container {
   margin-top: 8%;
@@ -742,6 +746,17 @@ $tile-size: 113.75px;
 
   .fa-hand-point-left {
     display: none;
+  }
+
+  .mobile-keys {
+    display: flex;
+    margin-top: 20px;
+    width: 300px;
+    justify-content: space-between;
+
+    i {
+      @include fontSize(45);
+    }
   }
 
   // index styles

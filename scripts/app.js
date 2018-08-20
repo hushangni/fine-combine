@@ -91,6 +91,30 @@ class KeyboardInput {
             37: 3// left
         }
 
+        $('#up').on("click", function(e){
+            let key = keyCodes[38];
+            e.preventDefault();
+            fineApp.keyListen.produceEvent("move", key);
+        });
+
+        $('#right').on("click", function (e) {
+            let key = keyCodes[39];
+            e.preventDefault();
+            fineApp.keyListen.produceEvent("move", key);
+        });
+
+        $('#down').on("click", function (e) {
+            let key = keyCodes[40];
+            e.preventDefault();
+            fineApp.keyListen.produceEvent("move", key);
+        });
+
+        $('#left').on("click", function (e) {
+            let key = keyCodes[37];
+            e.preventDefault();
+            fineApp.keyListen.produceEvent("move", key);
+        });
+
         $(document).on("keydown", function(e) {
             let key = keyCodes[e.which];
 
