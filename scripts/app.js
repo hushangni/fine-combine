@@ -14,6 +14,12 @@ fineApp.time = $('#time')[0];
 fineApp.winModal = $('.winner-modal');
 fineApp.questionModal = $('.question-modal');
 fineApp.heartModal = $('.heart-modal');
+fineApp.mobileSwipes = [Hammer.DIRECTION_UP, Hammer.DIRECTION_RIGHT, Hammer.DIRECTION_LEFT];
+fineApp.gameContainer = $('.game-container')[0];
+fineApp.hammer = Hammer(fineApp.gameContainer, {
+    drag_block_horizonal: true,
+    drag_block_vertical: true
+})
 
 fineApp.tileContainer = $('.tile-container')[0];
 fineApp.scoreContainer = $('#score')[0];
@@ -605,6 +611,8 @@ fineApp.init = () => {
     fineApp.keyListen.listen();
     fineApp.updateBoard();
     fineApp.startTimer();
+
+    // event listeners
     $('.juicy-button').on('mouseover', function () {
         squish.play();
     })
@@ -614,6 +622,13 @@ fineApp.init = () => {
     $('.tweet-line').on('mouseover', function () {
         tweeter.play();
     });
+
+    fineApp.hammer.on("swipe", function(e) {
+        e.gesture.preventDefault();
+        let direct = mobileSwipes.indexOf(event.gesture.direction);
+        fineApp.produceEvent("move", direct);
+
+    })
 
     $('.fa-question').on('click', function (e) {
         fineApp.questionModal.addClass('show');
@@ -646,32 +661,5 @@ fineApp.init = () => {
 $(function() {
     console.log("ready");
     fineApp.init();
-    // $('.juicy-button').on('mouseover', function () {
-    //     squish.play();
-    // })
-    // $('.fa-sync-alt').on('mousedown', function() {
-    //     squish.play();
-    // })
-    // $('.tweet-line').on('mouseover', function () {
-    //     tweeter.play();
-    // });
 
-    // $('.fa-question').on('click', function(e) {
-    //     fineApp.questionModal.addClass('show');
-    // });
-
-    // $('.fa-heart').on('click', function(e) {
-    //     fineApp.heartModal.addClass('show');
-    // });
-
-    // $('.fa-sync-alt').on('click', fineApp.restart);
-
-    // $('.index-times').on('click', function() {
-    //     fineApp.questionModal[0].classList.remove('show');
-    //     fineApp.heartModal[0].classList.remove('show');
-    // })
-
-    // $('.fa-times').on('click', function () {
-    //     fineApp.winModal[0].classList.remove('show');
-    // });
 })
