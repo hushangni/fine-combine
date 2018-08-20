@@ -144,7 +144,7 @@ body {
   text-shadow: -2px 2px 0px $txtShadowPink;
 
   .how-to-fruits {
-    margin: 50px auto;
+    margin: 40px auto 20px;;
     width: 500px;
     display: flex;
     justify-content: space-between;
@@ -156,7 +156,6 @@ body {
     img {
       width: 120px;
     }
-
   }
 }
 
@@ -187,6 +186,18 @@ body {
       i {
         @include fontSize(24);
       }
+    }
+    .game-progression {
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 330px;
+
+      i {
+        @include fontSize(10);
+      }
+
     }
   }
 }
@@ -713,6 +724,9 @@ $tile-size: 113.75px;
           width: 50px;
         }
       }
+      .game-progression {
+        width: 250px;
+      }
     }
   }
 
@@ -756,9 +770,8 @@ $tile-size: 113.75px;
   }
 
   .question-modal {
-
     .how-to-fruits {
-      margin: 25px auto;
+      margin: 25px auto 10px;
       width: 300px;
       display: flex;
       justify-content: space-between;
@@ -770,7 +783,6 @@ $tile-size: 113.75px;
       img {
         width: 60px;
       }
-
     }
   }
 

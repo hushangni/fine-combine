@@ -700,7 +700,7 @@ body {
   text-align: center;
   text-shadow: -2px 2px 0px #E28D8E; }
   .question-modal .how-to-fruits {
-    margin: 50px auto;
+    margin: 40px auto 20px;
     width: 500px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -734,6 +734,21 @@ body {
     .game-modal.question-modal .how-to-fruits i {
       font-size: 24px;
       font-size: 2.4rem; }
+  .game-modal.question-modal .game-progression {
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 330px; }
+    .game-modal.question-modal .game-progression i {
+      font-size: 10px;
+      font-size: 1rem; }
 
 .winner-modal {
   background-color: #fbb8a6; }
@@ -1312,6 +1327,8 @@ img.juicy-game-text {
         font-size: 1.8rem; }
       .game-modal.question-modal .how-to-fruits img {
         width: 50px; }
+    .game-modal.question-modal .game-progression {
+      width: 250px; }
   .game-over-modal p {
     margin-bottom: 0; }
   .more-to-love {
@@ -1337,7 +1354,7 @@ img.juicy-game-text {
       font-size: 20px;
       font-size: 2rem; }
   .question-modal .how-to-fruits {
-    margin: 25px auto;
+    margin: 25px auto 10px;
     width: 300px;
     display: -webkit-box;
     display: -ms-flexbox;
