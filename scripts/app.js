@@ -519,7 +519,7 @@ fineApp.updateBoard = () => {
             thinDing.play();
             // Allow user to tweet their final score
             $('#tweet').attr({
-                href: 'https://twitter.com/intent/tweet?text="I just got Juicy in ' + fineApp.minutes +  'm ' +  fineApp.seconds + "s" + ' with @shangniwho ' + '\'s' + ' 🍑 Juicy Jostle! Think you can get Juicy faster? 💪 bit.ly/2AHKG5O"',
+                href: 'https://twitter.com/intent/tweet?text="I just got Juicy in ' + fineApp.minutes + 'm ' + fineApp.seconds + "s" + ' with @shangniwho ' + '\'s' + ' 🍑 Juicy Jostle! Think you can get Juicy faster? 💪 https://bit.ly/2nQPjCm"',
                 target: '_blank'
             }).addClass('').text('tweet your score!');
 
