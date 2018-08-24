@@ -194,6 +194,10 @@ body {
       align-items: center;
       width: 330px;
 
+      img {
+        width: 33px;
+      }
+
       i {
         @include fontSize(10);
       }
@@ -730,6 +734,9 @@ $tile-size: 113.75px;
       }
       .game-progression {
         width: 250px;
+        img {
+          width: 25px;
+        }
       }
     }
   }

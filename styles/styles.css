@@ -746,6 +746,8 @@ body {
     -ms-flex-align: center;
     align-items: center;
     width: 330px; }
+    .game-modal.question-modal .game-progression img {
+      width: 33px; }
     .game-modal.question-modal .game-progression i {
       font-size: 10px;
       font-size: 1rem; }
@@ -1332,6 +1334,8 @@ img.juicy-game-text {
         width: 50px; }
     .game-modal.question-modal .game-progression {
       width: 250px; }
+      .game-modal.question-modal .game-progression img {
+        width: 25px; }
   .game-over-modal p {
     margin-bottom: 0; }
   .more-to-love {
