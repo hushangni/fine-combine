@@ -1,8 +1,10 @@
 const fineApp = {};
+const dbRef = firebase.database().ref();
 
 // fine app variables
 fineApp.gridSize = 4;
 fineApp.score = 0;
+fineApp.highScoreArray = [];
 fineApp.gameOver = false;
 fineApp.gameWon = false;
 fineApp.winTile = 256;
@@ -11,6 +13,7 @@ fineApp.minutes = 0;
 fineApp.finalTimes = $('#finalTime')[0];
 fineApp.interval;
 fineApp.time = $('#time')[0];
+
 
 // fine app modals
 fineApp.winModal = $('.winner-modal');
@@ -522,6 +525,32 @@ fineApp.updateBoard = () => {
                 href: 'https://twitter.com/intent/tweet?text="I just got Juicy in ' + fineApp.minutes + 'm ' + fineApp.seconds + "s" + ' with @shangniwho ' + '\'s' + ' 🍑 Juicy Jostle! Think you can get Juicy faster? 💪 https://bit.ly/2nQPjCm"',
                 target: '_blank'
             }).addClass('').text('tweet your score!');
+            const minScore = fineApp.minutes * 60;
+            const secScore = fineApp.seconds * 1;
+            fineApp.score = minScore + secScore;
+
+
+            dbRef.on('value', (snapshot) => {
+                const scoreArray = Object.entries(snapshot.val())
+                                    .map((item) => {
+                                        return ({
+                                            name: item[1].name,
+                                            score: item[1].score,
+                                            time: item[1].time
+                                        })
+                                    });
+                fineApp.highScoreArray = scoreArray;
+            });
+
+            fineApp.highScoreArray.sort(function(a, b) {
+                return a.score - b.score;
+            })
+
+            console.log(fineApp.highScoreArray, "high score array");
+
+
+
+            // MAP OVER HIGH SCORES HERE
 
             fineApp.winnerModalOpen();
             console.log("you won!");
@@ -572,6 +601,7 @@ fineApp.winnerModalOpen = () => {
     setTimeout(function () {
         fineApp.winModal[0].classList.add("show");
     }, 600);
+
 }
 
 // fineApp.gameOverModalOpen();
@@ -625,6 +655,34 @@ fineApp.init = () => {
         tweeter.play();
     });
 
+    $('.fa-save').on('click', function (e) {
+        const name = $('.name-ranking').val();
+        const time = `${fineApp.minutes}m ${fineApp.seconds}s`;
+        const score = fineApp.score;
+        dbRef.push({
+            name: name,
+            time: time,
+            score: score
+        });
+
+        dbRef.on('child_added', (snapshot) => {
+            const scoreArray = Object.entries(snapshot.val())
+                .map((item) => {
+                    return ({
+                        name: item[1].name,
+                        score: item[1].score,
+                        time: item[1].time
+                    })
+                });
+            fineApp.highScoreArray = scoreArray;
+        });
+
+        fineApp.highScoreArray.sort(function (a, b) {
+            return a.score - b.score;
+        })
+
+    })
+
     $('.fa-question').on('click', function (e) {
         fineApp.questionModal.addClass('show');
     });
@@ -655,6 +713,7 @@ fineApp.init = () => {
 
 // document.ready
 $(function() {
+
     console.log("ready");
     fineApp.init();
 

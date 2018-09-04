@@ -42,6 +42,14 @@
             <p>You took:
                 <span id="finalTime">0s</span>
             </p>
+            <div class="name-score-bar">
+                <input type="text" placeholder="Enter your name" class="name-ranking">
+                <i class="fas fa-save"></i>
+            </div>
+            <div class="high-scores">
+                <!-- dynamically populate -->
+            </div>
+
             <p class="tweet-line">
                 <i class="fab fa-twitter"></i>
                 <a id="tweet"></a>
@@ -158,6 +166,19 @@
     </div>
 
     <!-- link to scripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAfHb7I_o5xJ15Hgz9Aocf3ksvUGMOOhJ8",
+            authDomain: "juicy-jostle.firebaseapp.com",
+            databaseURL: "https://juicy-jostle.firebaseio.com",
+            projectId: "juicy-jostle",
+            storageBucket: "juicy-jostle.appspot.com",
+            messagingSenderId: "447670796841"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='
         crossorigin='anonymous'></script>
     <script src="scripts/app.js"></script>

@@ -753,7 +753,44 @@ body {
       font-size: 1rem; }
 
 .winner-modal {
-  background-color: #fbb8a6; }
+  background-color: #fbb8a6;
+  width: 500px;
+  height: 520px; }
+  .winner-modal .name-score-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+    .winner-modal .name-score-bar i {
+      font-size: 2.5rem;
+      cursor: pointer;
+      margin-left: 10px; }
+      .winner-modal .name-score-bar i:hover {
+        -webkit-animation: shake 1s ease infinite;
+        animation: shake 1s ease infinite;
+        color: #D04746; }
+    .winner-modal .name-score-bar .name-ranking {
+      width: 50%; }
+    .winner-modal .name-score-bar .name-ranking::-webkit-input-placeholder {
+      font-size: 1.4rem; }
+    .winner-modal .name-score-bar .name-ranking:-ms-input-placeholder {
+      font-size: 1.4rem; }
+    .winner-modal .name-score-bar .name-ranking::-ms-input-placeholder {
+      font-size: 1.4rem; }
+    .winner-modal .name-score-bar .name-ranking::placeholder {
+      font-size: 1.4rem; }
+  .winner-modal .high-scores {
+    height: 200px;
+    width: 70%;
+    background-color: #fff;
+    margin: 10px auto 0;
+    overflow-y: auto;
+    border: 2px solid #aaa; }
   .winner-modal .tweet-line {
     padding-top: 10px;
     padding-bottom: 0;
@@ -767,7 +804,7 @@ body {
     .winner-modal .tweet-line .fa-twitter {
       margin-right: 15px; }
   .winner-modal h2 {
-    margin-bottom: 20px; }
+    margin-bottom: 0; }
   .winner-modal p {
     margin: 8px; }
   .winner-modal .tweet-line:hover .fa-twitter {
