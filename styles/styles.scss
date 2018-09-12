@@ -241,11 +241,29 @@ body {
   .high-scores {
     height: 200px;
     width: 70%;
+    text-align: left;
     background-color: #fff;
     margin: 10px auto 0;
     overflow-y: auto;
     border: 2px solid #aaa;
+    list-style: none;
 
+    li {
+      text-align: left;
+      color: $pinkPeach;
+      text-shadow: none;
+
+      .player-time {
+        color: $peach;
+        text-shadow: -3px 3px 0px $txtShadowPink;
+      }
+    }
+
+    li {
+      .player-time {
+        text-shadow: -3px 3px 0px $txtShadowPink;
+      }
+    }
   }
 
   .tweet-line {

@@ -543,7 +543,7 @@ fineApp.updateBoard = () => {
             });
 
             fineApp.highScoreArray.sort(function(a, b) {
-                return a.score - b.score;
+                return b.score - a.score;
             })
 
             console.log(fineApp.highScoreArray, "high score array");
@@ -626,6 +626,8 @@ fineApp.restart = () => {
     fineApp.grid.buildGrid();
     fineApp.grid.addStartTiles();
     fineApp.updateBoard();
+    fineApp.highScoreArray = [];
+    $('.high-scores').empty();
 }
 
 // initialize
@@ -659,28 +661,37 @@ fineApp.init = () => {
         const name = $('.name-ranking').val();
         const time = `${fineApp.minutes}m ${fineApp.seconds}s`;
         const score = fineApp.score;
-        dbRef.push({
+        firebase.database().ref(`${name}`).set({
             name: name,
             time: time,
             score: score
         });
 
+        fineApp.highScoreArray = [];
+
         dbRef.on('child_added', (snapshot) => {
-            const scoreArray = Object.entries(snapshot.val())
-                .map((item) => {
-                    return ({
-                        name: item[1].name,
-                        score: item[1].score,
-                        time: item[1].time
-                    })
-                });
-            fineApp.highScoreArray = scoreArray;
+            if (snapshot.val().score !== "0") {
+                fineApp.highScoreArray.push(snapshot.val());
+            }
         });
+
+        console.log(fineApp.highScoreArray, 'high schore array');
+
 
         fineApp.highScoreArray.sort(function (a, b) {
             return a.score - b.score;
         })
 
+        fineApp.highScoreArray.forEach((player) => {
+
+            $('.high-scores').append(`<li class="score"><span class="player-time">${player.time}:</span> ${player.name}</li>`);
+        })
+        fineApp.highScoreArray = [];
+
+    })
+
+    $('.juice-again-button').on('click', function (e) {
+        $('.high-scores').empty();
     })
 
     $('.fa-question').on('click', function (e) {
@@ -696,6 +707,7 @@ fineApp.init = () => {
     $('.index-times').on('click', function () {
         fineApp.questionModal[0].classList.remove('show');
         fineApp.heartModal[0].classList.remove('show');
+        $('.high-scores').empty();
     })
 
 
@@ -723,7 +735,6 @@ $(function() {
     window.addEventListener('keyup', (e) => {
         pressed.push(e.key);
         pressed.splice(-secretCode.length - 1, pressed.length - secretCode);
-        console.log(pressed);
         if (pressed.join('').includes(secretCode)) {
             console.log('DING DING!');
             fineApp.gameWon = true;
@@ -736,7 +747,6 @@ $(function() {
     window.addEventListener('keyup', (e) => {
         pressed1.push(e.key);
         pressed1.splice(-secretCode1.length - 1, pressed.length - secretCode1);
-        console.log(pressed1);
         if (pressed1.join('').includes(secretCode1)) {
             console.log('DING DING!');
             fineApp.tileImgs = hackerImages;

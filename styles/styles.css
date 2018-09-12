@@ -787,10 +787,21 @@ body {
   .winner-modal .high-scores {
     height: 200px;
     width: 70%;
+    text-align: left;
     background-color: #fff;
     margin: 10px auto 0;
     overflow-y: auto;
-    border: 2px solid #aaa; }
+    border: 2px solid #aaa;
+    list-style: none; }
+    .winner-modal .high-scores li {
+      text-align: left;
+      color: #fbb8a6;
+      text-shadow: none; }
+      .winner-modal .high-scores li .player-time {
+        color: #fddc95;
+        text-shadow: -3px 3px 0px #E28D8E; }
+    .winner-modal .high-scores li .player-time {
+      text-shadow: -3px 3px 0px #E28D8E; }
   .winner-modal .tweet-line {
     padding-top: 10px;
     padding-bottom: 0;
