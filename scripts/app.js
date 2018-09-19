@@ -48,7 +48,14 @@ const fruitImages = [
 ];
 
 const dogImages = [
-
+    '<img src="assets/dug.jpg" alt="regular dug">',
+    '<img src="assets/junior.jpeg" alt="junior">',
+    '<img src="assets/kenzo.jpeg" alt="kenzo">',
+    '<img src="assets/porkie.jpeg" alt="pork">',
+    '<img src="assets/whippet.jpg" alt="whippet">',
+    '<img src="assets/leo.png" alt="leo">',
+    '<img src="assets/einstein.png" alt="einstein">',
+    '<img src="assets/king-dug.jpg" alt="king dug" class="win-image">'
 ];
 
 fineApp.tileImgs = fruitImages;
@@ -612,7 +619,7 @@ fineApp.winnerModalOpen = () => {
     clearInterval(fineApp.interval);
     setTimeout(function() {
         fineApp.winModal[0].classList.add("show");
-    }, 600);
+    }, 800);
 };
 
 // fineApp.gameOverModalOpen();
@@ -781,6 +788,18 @@ $(function() {
         if (pressed1.join("").includes(secretCode1)) {
         console.log("DING DING!");
         fineApp.tileImgs = hackerImages;
+        }
+    });
+
+    // hackeryou cheat code
+    let pressed4 = [];
+    const secretCode4 = "dogs";
+    window.addEventListener("keyup", e => {
+        pressed4.push(e.key);
+        pressed4.splice(-secretCode4.length - 1, pressed4.length - secretCode4);
+        if (pressed4.join("").includes(secretCode4)) {
+            console.log("DOGGOO!");
+            fineApp.tileImgs = dogImages;
         }
     });
 
