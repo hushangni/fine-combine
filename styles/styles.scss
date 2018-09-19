@@ -126,6 +126,7 @@ body {
 
     p {
       margin-top: 20px;
+      -webkit-text-stroke: 1px $outlineRed;
     }
 
     a {
@@ -338,7 +339,7 @@ i {
 .index-icon {
   @include fontSize(22);
   position: absolute;
-  top: 45px;
+  top: 27px;
   &.fa-question {
     left: -80px;
   }
@@ -356,7 +357,7 @@ i.index-icon:hover {
 
 .juicy-button {
   position: relative;
-  top: 50px;
+  top: 30px;
   @include fontSize(14);
   text-decoration: none;
   background: white;
@@ -470,10 +471,10 @@ i.index-icon:hover {
 
 div.game-logo-container {
   position: absolute;
-  left: -25%;
-  top: -28%;
+  left: -28%;
+  top: -23%;
   z-index: 4;
-  transform: rotate(-25deg);
+  transform: rotate(-30deg);
 }
 
 img.juicy-index-text {
